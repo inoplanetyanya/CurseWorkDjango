@@ -27,7 +27,7 @@ def contact(request):
         'app/contact.html',
         {
             'title':'Контакты',
-            'message':'Your contact page.',
+            'message':'Контактная информация',
             'year':datetime.now().year,
         }
     )
