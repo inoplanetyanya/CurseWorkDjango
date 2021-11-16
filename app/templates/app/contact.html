@@ -1,20 +1,16 @@
-{% extends "app/layout.html" %}
+{% extends "app/layout.html" %} {% block content %}
+<div class="contacts-container">
+  <h2>{{ title }}</h2>
+  <address>
+    Псковская область, Псков<br />
+    Улица Пушкина, дом Колотушкина<br />
+    <abbr title="Phone">Телефон: +7 911 180 82 62</abbr>
+  </address>
 
-{% block content %}
-
-<h2>{{ title }}.</h2>
-<h3>{{ message }}</h3>
-
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
-
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+  <address>
+    <strong>Поддержка:</strong> <a href="mailto:Support@example.com">Support@inomarket.com</a><br />
+    <strong>Отдел маркетинга:</strong> <a href="mailto:Marketing@example.com">Marketing@inomarket.com</a>
+  </address>
+</div>
 
 {% endblock %}

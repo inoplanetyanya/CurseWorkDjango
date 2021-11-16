@@ -1,0 +1,65 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-inverse {
+  position: relative;
+  padding: 0;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+}
+
+.header-left {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.header-right {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.username {
+  padding: 0;
+  margin: 0 10px;
+}
+
+.login-link {
+  padding: 0;
+  margin: 0 10px;
+  color: #999999;
+  font-size: 18px;
+  line-height: 20px;
+  text-decoration: none;
+}
+
+.login-link:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.header-link-container {
+  min-width: 80px;
+}
+
+.logo {
+  max-width: 50px;
+  max-height: 50px;
+}
