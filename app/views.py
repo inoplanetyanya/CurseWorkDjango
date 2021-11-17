@@ -27,7 +27,6 @@ def contact(request):
         'app/contact.html',
         {
             'title':'Контакты',
-            'message':'Контактная информация',
             'year':datetime.now().year,
         }
     )
@@ -39,8 +38,31 @@ def about(request):
         request,
         'app/about.html',
         {
-            'title':'About',
-            'message':'Your application description page.',
+            'title':'О нас',
+            'year':datetime.now().year,
+        }
+    )
+
+def news(request):
+    """Renders the about page."""
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/news.html',
+        {
+            'title':'Новости',
+            'year':datetime.now().year,
+        }
+    )
+
+def catalog(request):
+    """Renders the about page."""
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/catalog.html',
+        {
+            'title':'Каталог',
             'year':datetime.now().year,
         }
     )
