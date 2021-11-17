@@ -1,15 +1,15 @@
 {% extends "app/layout.html" %} {% block content %}
 <div class="contacts-container">
-  <h2>{{ title }}</h2>
+  <h2 class="contacts-title">{{ title }}</h2>
   <address>
-    Псковская область, Псков<br />
-    Улица Пушкина, дом Колотушкина<br />
-    <abbr title="Phone">Телефон: +7 911 180 82 62</abbr>
+    <p class="address address-city">Псковская область, Псков</p>
+    <p class="address address-street">Улица Пушкина, дом Колотушкина</p>
+    <abbr class="address address-phone" title="Телефон">Телефон: +7 911 180 82 62</abbr>
   </address>
 
   <address>
-    <strong>Поддержка:</strong> <a href="mailto:Support@example.com">Support@inomarket.com</a><br />
-    <strong>Отдел маркетинга:</strong> <a href="mailto:Marketing@example.com">Marketing@inomarket.com</a>
+    <p class="email support-title">Поддержка: <a class="email-link" href="mailto:Support@example.com">Support@inomarket.com</a></p>
+    <p class="email marketing-title">Отдел маркетинга: <a class="email-link" href="mailto:Marketing@example.com">Marketing@inomarket.com</a></p>
   </address>
 </div>
 
