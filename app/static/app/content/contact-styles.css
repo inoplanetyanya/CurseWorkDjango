@@ -1,0 +1,29 @@
+.contacts-container {
+  margin: 10px 50px;
+}
+
+.contacts-title {
+  color: #000000;
+  margin: 10px 0;
+}
+
+.address {
+  color: #000000;
+  font-style: normal;
+  margin: 5px 0;
+}
+
+.email {
+  color: #000000;
+  font-style:normal;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.email-link {
+  color: #000000;
+}
+
+.email-link:hover {
+  color: #000000;
+}
