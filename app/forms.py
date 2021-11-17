@@ -10,9 +10,9 @@ class BootstrapAuthenticationForm(AuthenticationForm):
     """Authentication form which uses boostrap CSS."""
     username = forms.CharField(max_length=254,
                                widget=forms.TextInput({
-                                   'class': 'form-control',
-                                   'placeholder': 'User name'}))
+                                   'class': 'form-control login-input',
+                                   'placeholder': 'Имя пользователя'}))
     password = forms.CharField(label=_("Password"),
                                widget=forms.PasswordInput({
-                                   'class': 'form-control',
-                                   'placeholder':'Password'}))
+                                   'class': 'form-control login-input',
+                                   'placeholder':'Пароль'}))
