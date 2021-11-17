@@ -17,7 +17,9 @@ import app.views
 urlpatterns = [
     # Examples:
     url(r'^$', app.views.home, name='home'),
+    url(r'^catalog$', app.views.catalog, name='catalog'),
     url(r'^contact$', app.views.contact, name='contact'),
+    url(r'^news$', app.views.news, name='news'),
     url(r'^about$', app.views.about, name='about'),
     url(r'^login/$',
         django.contrib.auth.views.login,

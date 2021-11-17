@@ -8,7 +8,7 @@
 
     <link rel="icon" href="{% static 'app/content/logo.png' %}" />
 
-    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" /> -->
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
     <link rel="stylesheet" href="{% static 'app/content/global-styles.css' %}" />
     <link rel="stylesheet" href="{% static 'app/content/contact-styles.css' %}" />
@@ -16,18 +16,21 @@
   </head>
 
   <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar">
       <nav>
         <header class="header">
           <div class="header-left">
             <div class="header-link-container">
-              <a href="/" class="navbar-brand"><img class="logo" src="{% static 'app/content/logo.png' %}" alt="logo" /></a>
+              <a href="/" class="navbar-brand header-link logo-link"><img class="logo" src="{% static 'app/content/logo.png' %}" alt="logo" /><span>inoMarket</span></a>
             </div>
             <div class="header-link-container">
-              <a href="/" class="navbar-brand">inoMarket</a>
+              <a class="navbar-brand header-link" href="{% url 'catalog' %}">Каталог</a>
             </div>
             <div class="header-link-container">
-              <a class="navbar-brand" href="{% url 'contact' %}">Контакты</a>
+              <a class="navbar-brand header-link" href="{% url 'news' %}">Новости</a>
+            </div>
+            <div class="header-link-container">
+              <a class="navbar-brand header-link" href="{% url 'contact' %}">Контакты</a>
             </div>
           </div>
           <div class="header-right">
