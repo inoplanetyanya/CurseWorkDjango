@@ -3,7 +3,8 @@
   <p>В вашей козине товары на сумму {{totalSum}}руб. :</p>
   {% for cart in carts %}
     <p>{{cart.product.name}}</p>
+    <a href="{% url 'removeFromCart' parametr=cart.id%}">Удалить</a>
   {% endfor %}
-  <button class="place-an-order">Оформить заказ</button>
+  <a href="{% url 'makeOrders' parametr=0 %}"><div class="place-an-order">Оформить заказ</div></a>
 </div>
 {% endblock %}
