@@ -57,10 +57,24 @@ class Comment(models.Model):
     verbose_name = "Отзыв"
     verbose_name_plural = "Отзывы"
 
+class Status(models.Model):
+  text = models.CharField(max_length = 150, unique = True, verbose_name = 'Наименование сатуса')
+  colorHEX = models.CharField(max_length = 6, verbose_name = 'Цвет статуса HEX')
+
+  def __str__(self):
+    return '%s | %s' % (self.id, self.text)
+
+  class Meta:
+    db_table = "Statuses"
+    ordering = ["id"]
+    verbose_name = "Статус"
+    verbose_name_plural = "Статусы заказов"
+
 class Order(models.Model):
   order_id = models.IntegerField(null = False, verbose_name = 'Номер заказа')
   product = models.ForeignKey(Product, on_delete = models.CASCADE, verbose_name = "Продукт")
   client = models.ForeignKey(User, on_delete = models.CASCADE, verbose_name = "Клиент")
+  status = models.ForeignKey(Status, default = 1, on_delete = models.CASCADE, verbose_name = "Статус")
   date = models.DateTimeField(default = datetime.now(), db_index = True, verbose_name = "Дата")
 
   def __str__(self):
@@ -87,11 +101,11 @@ class Cart(models.Model):
     verbose_name = "Корзина"
     verbose_name_plural = "Корзины"
 
-
 admin.site.register(Product)
 admin.site.register(Сategories)
 admin.site.register(Comment)
 admin.site.register(Order)
 admin.site.register(Cart)
+admin.site.register(Status)
 
 
