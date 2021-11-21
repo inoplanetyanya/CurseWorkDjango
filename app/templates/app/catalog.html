@@ -1,3 +1,22 @@
 {% extends "app/layout.html" %} {% block content %}
-<div class="catalog-container"></div>
+<div class="catalog-container">
+  {% for product in products %}
+  <div class="product-container">
+    <div class="product-left">
+      <div class="product-image-container">
+        <img class="product-image" src="{{product.image.url}}"/>
+      </div>
+        <div class="name-id-description">
+          <h2 class="product-name">{{product.name}}</h2>
+          <p class="product-id">Код товара: {{product.product_id}}</p>
+          <p class="product-description">Тут должно быть описание</p>
+        </div>
+      </div>
+    <div class="product-right">
+      <p class="product-price">{{product.price}} <span class="rub">руб.</span> </p>
+      <a class="details-link" href="{% url 'product' parametr=product.product_id %}"><p class="product-details">Подробнее</p></a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
 {% endblock %}

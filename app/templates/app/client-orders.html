@@ -1,3 +1,16 @@
 {% extends "app/layout.html" %} {% block content %}
-<div class="client-orders-container"></div>
+<div class="client-orders-container">
+  {% for order in orders %}
+  <div class="order-container">
+    <div class="product-image-container">
+      <img class="product-image" src="{{order.product.image.url}}" />
+    </div>
+    <div class="product-name-price">
+      <p class="product-name">{{order.product.name}}</p>
+      <p class="product-price">{{order.product.price}} руб.</p>
+    </div>
+  </div>
+  {% endfor %}
+  <p class="orders-total-price">Общая сумма ваших заказов: {{totalSum}} руб.</p>
+</div>
 {% endblock %}
