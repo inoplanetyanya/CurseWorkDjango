@@ -5,3 +5,61 @@
   margin: 10px 50px;
   color: #000000;
 }
+
+.manager-orders-container .order-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  border: 1px solid #000000;
+  border-radius: 6px;
+  margin: 10px 0;
+}
+
+.manager-orders-container .order-container .order-info {
+  margin: 10px;
+}
+
+.order-details {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.manager-orders-container .left-part,.right-part {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  margin: 10px;
+}
+
+.manager-orders-container .left-part p,.right-part p {
+  margin: 5px 0;
+}
+
+.status-buttons {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  color: #000000;
+  margin: 10px;
+}
+
+.status-change-button {
+  display: block;
+  text-decoration: none;
+  color: #000000;
+  border: 1px solid #000000;
+  border-radius: 3px;
+  width: 150px;
+  line-height: 26px;
+  margin: 10px;
+  text-align: center;
+}
+
+.status-change-button:hover {
+  text-decoration: none;
+  cursor: pointer;
+}

@@ -1,10 +1,9 @@
 {% extends "app/layout.html" %} {% block content %}
 <div class="client-orders-container">
   {% for sum in sums %}
-  <p>Заказ № {{sum.orderID}} на сумму {{sum.totalSum}}</p>
-  <p>Статус заказа: тут должен быть статус</p>
-  {% for order in orders %}
-  {% if sum.orderID == order.orderID%}
+  <p>Заказ № {{sum.orderID}} на сумму {{sum.totalSum}} руб.</p>
+  <p>Статус заказа: <span style="color: #{{sum.statusColor}};">{{sum.orderStatus}}</span></p>
+  {% for order in orders %} {% if sum.orderID == order.orderID%}
   <div class="order-container">
     <div class="product-image-container">
       <img class="product-image" src="/media/{{order.productImage}}" />
@@ -14,8 +13,6 @@
       <p class="product-price">{{order.productPrice}} руб.</p>
     </div>
   </div>
-  {% endif %}
-  {% endfor %}
-  {% endfor %}
+  {% endif %} {% endfor %} {% endfor %}
 </div>
 {% endblock %}

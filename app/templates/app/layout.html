@@ -44,19 +44,19 @@
           </div>
           <div class="header-right">
             {% if user.is_authenticated and not user.is_staff %}
-            <div class="header-link-container manager-orders-container">
+            <div class="header-link-container manager-orders-link-container">
               <a class="header-link" href="{% url 'client-cart' %}">Корзина</a>
             </div>
             {% endif %} {% if user.is_authenticated and not user.is_staff %}
-            <div class="header-link-container manager-orders-container">
+            <div class="header-link-container manager-orders-link-container">
               <a class="header-link" href="{% url 'client-orders' %}">Заказы</a>
             </div>
             {% endif %} {% if user.is_staff %}
-            <div class="header-link-container manager-orders-container">
+            <div class="header-link-container manager-orders-link-container">
               <a class="header-link" href="{% url 'manager-orders' %}">Заказы</a>
             </div>
             {% endif %} {% if not user.is_authenticated %}
-            <div class="header-link-container registration-container">
+            <div class="header-link-container registration-link-container">
               <a class="header-link" href="{% url 'registration' %}">Регистрация</a>
             </div>
             {% endif %}
