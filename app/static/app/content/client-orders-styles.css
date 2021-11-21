@@ -1,0 +1,32 @@
+.client-orders-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  margin: 10px 50px;
+  color: #000000;
+}
+
+.client-orders-container .order-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.client-orders-container .product-image-container{
+  max-width: 100px;
+  margin-right: 20px;
+}
+
+.product-name-price .product-name {
+  font-size: 22px;
+}
+
+.product-name-price .product-price{
+  font-size: 14px;
+  font-weight: 100;
+}
+
+.orders-total-price {
+  margin: 20px 0;
+}

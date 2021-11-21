@@ -1,0 +1,46 @@
+{% extends "app/layout.html" %} {% block content %}
+<div class="product-page-container">
+  <div class="product-top-section">
+    <div class="product-image-container">
+      <img class="product-image" src="{{product.image.url}}" />
+    </div>
+
+    <div class="product-buy">
+      <h2 class="product-name">{{product.name}}</h2>
+      <p class="product-price">{{product.price}} руб.</p>
+      <button class="product-buy-button"><span class="plus">+&nbsp;</span>В корзину</button>
+    </div>
+  </div>
+  <div class="product-bot-section">
+    <div class="product-description-container">
+      <h2 class="product-description-title">Описание</h2>
+      <pre class="product-desctiption">{{product.description}}</pre>
+    </div>
+    <div class="product-comments">
+      <h2 class="product-comments-title">Отзывы</h2>
+      <!-- Форма комментариев -->
+      {% if user.is_authenticated %}
+      <h3 class="add-comment-title">Добавить отзыв</h3>
+      <form class="add-comment-form" method="POST">
+        {% csrf_token %}
+        <div>
+          {{form.as_p}}
+          <button type="submit" class="save btn btn-default">Отправить отзыв</button>
+        </div>
+      </form>
+
+      {% else %}
+      <h3>Авторизуйтесь для добавления отзывов</h3>
+      {% endif %} {% for comment in comments %}
+      <div class="comment-container">
+        <p class="comment-title">
+          <span class="comment-date">{{comment.date.date}}&nbsp;&nbsp;&nbsp;</span><span class="comment-author">{{comment.author}}</span>
+        </p>
+        <p class="comment-text">{{comment.text|linebreaksbr }}</p>
+      </div>
+      {% endfor %}
+      <!-- Форма комментариев -->
+    </div>
+  </div>
+</div>
+{% endblock %}

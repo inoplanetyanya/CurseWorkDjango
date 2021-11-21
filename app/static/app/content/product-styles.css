@@ -1,0 +1,170 @@
+.product-page-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  margin: 10px 50px;
+  color: #000000;
+}
+
+.product-page-container .product-top-section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+}
+
+.product-page-container .product-image-container {
+  width: 450px;
+}
+
+.product-image {
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.product-page-container .product-buy {
+  width: 400px;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.product-buy .product-name {
+  font-size: 24px;
+}
+
+.product-buy .product-price {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.product-buy .product-price {
+
+}
+
+.product-buy .product-buy-button {
+  border-radius: 6px;
+  border: none;
+  outline: 1px solid #1e1e1e;
+  color: #000000;
+  font-size: 20px;
+  line-height: 30px;
+  width: 240px;
+  height: 50px;
+}
+
+.product-buy .product-buy-button:hover {
+  outline: 1px solid #f16a2f;
+  color: #f16a2f;
+  cursor: pointer;
+}
+
+.product-page-container .product-bot-section {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.product-bot-section .product-description-container {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.product-description-container .product-description-title {
+  font-size: 24px;
+  margin: 20px 0;
+}
+
+.product-description-container .product-desctiption {
+  font-family: 'Roboto';
+}
+
+.product-comments {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.product-comments-title {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.add-comment-title {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.add-comment-form div:first-of-type {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.add-comment-form div:first-of-type p {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.add-comment-form div:first-of-type p label {
+  display: none;
+}
+
+.add-comment-form div:first-of-type p textarea {
+  border-radius: 5px;
+  font-size: 18px;
+  padding: 10px;
+  width: 600px;
+  height: 100px;
+  resize: none;
+}
+
+.add-comment-form div:first-of-type button {
+  border-radius: 5px;
+  border: none;
+  outline: 1px solid #1e1e1e;
+  color: #000000;
+  font-size: 20px;
+  line-height: 24px;
+  width: 240px;
+  height: 30px;
+  margin: 10px 0;
+}
+
+.add-comment-form div:first-of-type button:hover {
+  outline: 1px solid #f16a2f;
+  color: #f16a2f;
+  cursor: pointer;
+}
+
+.comment-container {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.comment-title {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.comment-text {
+  margin: 3px 0;
+}

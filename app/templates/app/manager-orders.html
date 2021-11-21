@@ -1,3 +1,18 @@
 {% extends "app/layout.html" %} {% block content %}
-<div class="manager-orders-container"></div>
+<div class="manager-orders-container">
+
+  <!-- TODO Resyle -->
+
+  {% for sum in sums%} 
+  <p>Заказ № {{sum.orderID}} клиента {{sum.clientID}} на сумму {{sum.totalSum}}</p>
+    {% for order in orders %}
+    {% if sum.orderID == order.orderID and not sum.printed %}
+  <p>Товар: {{order.pductName}} {{order.productID}}</p>
+  <p>Цена: {{order.priceForProduct}} x{{order.countOfProduct}} - {{order.sumForCount}} руб.</p>
+  {% endif %} {% endfor %}
+  <button>Подтвердить</button>
+  <button>Отклонить</button>
+  <button>Удалить</button>
+  {% endfor %}
+</div>
 {% endblock %}

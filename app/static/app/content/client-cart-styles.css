@@ -1,0 +1,25 @@
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  margin: 10px 50px;
+  color: #000000;
+}
+
+.place-an-order {
+  border-radius: 5px;
+  border: none;
+  outline: 1px solid #1e1e1e;
+  color: #000000;
+  font-size: 20px;
+  line-height: 24px;
+  width: 240px;
+  height: 30px;
+  margin: 10px 0;
+}
+
+.place-an-order:hover {
+  outline: 1px solid #f16a2f;
+  color: #f16a2f;
+  cursor: pointer;
+}

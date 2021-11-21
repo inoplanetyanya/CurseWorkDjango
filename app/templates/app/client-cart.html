@@ -1,0 +1,9 @@
+{% extends "app/layout.html" %} {% block content %}
+<div class="cart-container">
+  <p>В вашей козине товары на сумму {{totalSum}}руб. :</p>
+  {% for cart in carts %}
+    <p>{{cart.product.name}}</p>
+  {% endfor %}
+  <button class="place-an-order">Оформить заказ</button>
+</div>
+{% endblock %}
