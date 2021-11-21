@@ -2,8 +2,8 @@
 <form id="logoutForm" action="/logout" method="post" class="navbar-right">
   {% csrf_token %}
 
-  <span class="username" class="navbar-brand">Вы вошли как {{ user.username }}</span>
-  <a class="login-button login-link" href="javascript:document.getElementById('logoutForm').submit()">Выход</a>
+  <div class="username" class="navbar-brand">Вы вошли как {{ user.username }}</div>
+  <div><a class="login-button login-link" href="javascript:document.getElementById('logoutForm').submit()">Выход</a></div>
 </form>
 
 {% else %}

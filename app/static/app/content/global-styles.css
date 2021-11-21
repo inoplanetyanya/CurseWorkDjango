@@ -11,7 +11,9 @@
 body {
   font-family: 'Roboto';
   color: #999999;
-  min-width: 720px;
+  width: 100%;
+  min-width: 960px;
+  display: inline-block;
 }
 
 .header {
@@ -94,6 +96,17 @@ body {
   flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
+}
+
+#logoutForm {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+#logoutForm > div.username {
+  white-space: nowrap;
 }
 
 hr {
