@@ -6,7 +6,7 @@
   {% for sum in sums%} 
   <p>Заказ № {{sum.orderID}} клиента {{sum.clientID}} на сумму {{sum.totalSum}}</p>
     {% for order in orders %}
-    {% if sum.orderID == order.orderID and not sum.printed %}
+    {% if sum.orderID == order.orderID %}
   <p>Товар: {{order.pductName}} {{order.productID}}</p>
   <p>Цена: {{order.priceForProduct}} x{{order.countOfProduct}} - {{order.sumForCount}} руб.</p>
   {% endif %} {% endfor %}
