@@ -13,7 +13,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 from app.forms import CommentForm
 
-from .models import Cart, Comment, Order, Product
+from .models import Cart, Comment, Order, Product, Status
 
 import random
 
@@ -145,7 +145,7 @@ def product(request, parametr):
 def managerOrders(request):
     """Renders the about page."""
 
-    querySum = 'select o.id, o.client_id as clientID, o.order_id as orderID, sum(p.price) as totalSum from Products as p join Orders as o on o.product_id = p.id group by o.order_id'
+    querySum = 'select o.id, o.client_id as clientID, o.order_id as orderID, sum(p.price) as totalSum, s.text as orderStatus, s.colorHEX as statusColor from Products as p join Orders as o on o.product_id = p.id join Statuses as s on o.status_id = s.id group by o.order_id order by s.id, o.date'
 
     queryOrders = 'select p.id, o.order_id as orderID, o.client_id as clientID, p.product_id as productID, p.name as productName, p.price as priceForProduct, count(p.id) as countOfProduct, sum(p.price) as sumForCount from Orders AS o join Products as p on o.product_id = p.id group by p.id, o.order_id'
 
@@ -250,12 +250,14 @@ def clientOrders(request):
     # clientID - id клиента (индекс в таблице)
     # orderID - номер заказа (поле из таблицы Orders, не индекс таблицы)
 
-    querySum = 'select o.id, o.client_id as clientID, o.order_id as orderID, sum(p.price) as totalSum from Products as p join Orders as o on o.product_id = p.id where clientID = ' + str(request.user.id) + ' group by orderID, clientID'
+    querySum = 'select o.id, o.client_id as clientID, o.order_id as orderID, sum(p.price) as totalSum, s.text as orderStatus, s.colorHEX as statusColor from Products as p join Orders as o on o.product_id = p.id join Statuses as s on o.status_id = s.id where clientID = ' + str(request.user.id) + ' group by orderID, clientID order by o.date'
     sums = Order.objects.raw(querySum)
     # Нужные поля:
     # clientID - id клиента (индекс в таблице)
     # orderID - номер заказа (поле из таблицы Orders, не индекс таблицы)
     # totalSum - сумма за весь заказ
+    # orderStatus - статус заказа
+    # statusColor - цвет статуса
 
     print('\n\n\t\t\t---Заказы клиента: ', orders.query, '\n')
     print('\n\n\t\t\t---Cуммы заказов клиента: ', sums.query, '\n')
@@ -272,3 +274,42 @@ def clientOrders(request):
             'year':datetime.now().year,
         }
     )
+
+def approveOrder(request, parametr):
+
+    orders = Order.objects.filter(order_id = parametr)
+    status = Status.objects.get(text = 'Подтвержден')
+
+    for order in orders:
+        order.status = status
+        order.save()
+
+    return redirect('manager-orders')
+
+def rejectOrder(request, parametr):
+    orders = Order.objects.filter(order_id = parametr)
+    status = Status.objects.get(text = 'Отклонен')
+
+    for order in orders:
+        order.status = status
+        order.save()
+
+    return redirect('manager-orders')
+
+def resetOrder(request, parametr):
+    orders = Order.objects.filter(order_id = parametr)
+    status = Status.objects.get(text = 'В обработке')
+
+    for order in orders:
+        order.status = status
+        order.save()
+
+    return redirect('manager-orders')
+
+def deleteOrder(request, parametr):
+    orders = Order.objects.filter(order_id = parametr)
+
+    for order in orders:
+        order.delete()
+
+    return redirect('manager-orders')
