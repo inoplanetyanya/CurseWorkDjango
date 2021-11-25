@@ -4,6 +4,7 @@
   flex-wrap: nowrap;
   margin: 10px 50px;
   color: #000000;
+  align-items: center;
 }
 
 .manager-orders-container .order-container {
@@ -14,6 +15,7 @@
   border: 1px solid #000000;
   border-radius: 6px;
   margin: 10px 0;
+  width: 920px;
 }
 
 .manager-orders-container .order-container .order-info {
@@ -26,14 +28,14 @@
   flex-wrap: nowrap;
 }
 
-.manager-orders-container .left-part,.right-part {
+.manager-orders-container .left-part,.manager-orders-container .right-part {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   margin: 10px;
 }
 
-.manager-orders-container .left-part p,.right-part p {
+.manager-orders-container .left-part > p, .manager-orders-container .right-part > p {
   margin: 5px 0;
 }
 

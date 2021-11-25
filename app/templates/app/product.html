@@ -1,5 +1,5 @@
 {% extends "app/layout.html" %} {% block content %}
-<div class="product-page-container">
+<div class="product-container">
   <div class="product-top-section">
     <div class="product-image-container">
       <img class="product-image" src="{{product.image.url}}" />
@@ -7,6 +7,7 @@
 
     <div class="product-buy">
       <h2 class="product-name">{{product.name}}</h2>
+      <p class="product-id">Код товара: {{product.product_id}}</p>
       <p class="product-price">{{product.price}} руб.</p>
       <a href="{% url 'addToCart' parametr=product.id %}" class="add-to-catr-link"
         ><div class="product-buy-button"><span class="plus">+&nbsp;</span>В корзину</div></a

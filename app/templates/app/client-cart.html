@@ -1,10 +1,36 @@
 {% extends "app/layout.html" %} {% block content %}
 <div class="cart-container">
-  <p>В вашей козине товары на сумму {{totalSum}}руб. :</p>
-  {% for cart in carts %}
-    <p>{{cart.product.name}}</p>
-    <a href="{% url 'removeFromCart' parametr=cart.id%}">Удалить</a>
-  {% endfor %}
-  <a href="{% url 'makeOrders' parametr=0 %}"><div class="place-an-order">Оформить заказ</div></a>
+  <div class="cart-info">
+    <p class="cart-title">В вашей корзине товары на сумму <strong>{{totalSum}} руб.</strong></p>
+    <a class="place-an-order-link" href="{% url 'makeOrders' parametr=0 %}"><div class="place-an-order">Оформить заказ</div></a>
+    {% for cart in carts %}
+    <div class="cart-details">
+      <div class="left-and-center">
+        <div class="product-image">
+          <img src="/media/{{cart.productImage}}" alt="" />
+        </div>
+        <div class="left-part">
+          <p>Наименование товара</p>
+          <p>Код товара</p>
+          <p>Количество</p>
+          <p>Стоимость за единицу</p>
+          <p>Общая стоимость</p>
+        </div>
+        <div class="center-part">
+          <p>{{cart.productName}}</p>
+          <p>{{cart.productID}}</p>
+          <p>{{cart.productCount}}</p>
+          <p>{{cart.productPrice}}</p>
+          <p>{{cart.sumForCount}}</p>
+        </div>
+      </div>
+      <div class="right-part">
+        <a href="{% url 'addToCart' parametr=cart.product_id %}" class="add-to-cart-link"><div class="remove-from-cart-button">Добавить</div></a>
+        <a class="remove-from-cart-link" href="{% url 'removeFromCart' parametr=cart.id%}"><div class="remove-from-cart-button">Удалить</div></a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <!-- <a class="place-an-order-link" href="{% url 'makeOrders' parametr=0 %}"><div class="place-an-order">Оформить заказ</div></a> -->
 </div>
 {% endblock %}

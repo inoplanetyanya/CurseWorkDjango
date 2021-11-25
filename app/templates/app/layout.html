@@ -9,16 +9,17 @@
     <link rel="icon" href="{% static 'app/content/logo.png' %}" />
 
     <!-- <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" /> -->
-    <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
-    <link rel="stylesheet" href="{% static 'app/content/global-styles.css' %}" />
-    <link rel="stylesheet" href="{% static 'app/content/contact-styles.css' %}" />
-    <link rel="stylesheet" href="{% static 'app/content/registration-styles.css' %}" />
-    <link rel="stylesheet" href="{% static 'app/content/product-styles.css' %}" />
-    <link rel="stylesheet" href="{% static 'app/content/catalog-styles.css' %}" />
-    <link rel="stylesheet" href="{% static 'app/content/client-cart-styles.css' %}" />
-    <link rel="stylesheet" href="{% static 'app/content/client-orders-styles.css' %}" />
-    <link rel="stylesheet" href="{% static 'app/content/manager-orders-styles.css' %}" />
-    <link rel="stylesheet" href="{% static 'app/content/login-styles.css' %}" />
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" /> -->
+    <!-- <link rel="stylesheet" href="{% static 'app/content/global-styles.css' %}" /> -->
+    <!-- <link rel="stylesheet" href="{% static 'app/content/contact-styles.css' %}" /> -->
+    <!-- <link rel="stylesheet" href="{% static 'app/content/registration-styles.css' %}" /> -->
+    <!-- <link rel="stylesheet" href="{% static 'app/content/product-styles.css' %}" /> -->
+    <!-- <link rel="stylesheet" href="{% static 'app/content/catalog-styles.css' %}" /> -->
+    <!-- <link rel="stylesheet" href="{% static 'app/content/client-cart-styles.css' %}" /> -->
+    <!-- <link rel="stylesheet" href="{% static 'app/content/manager-orders-styles.css' %}" /> -->
+    <!-- <link rel="stylesheet" href="{% static 'app/content/client-orders-styles.css' %}" /> -->
+    <!-- <link rel="stylesheet" href="{% static 'app/content/login-styles.css' %}" /> -->
+    <link rel="stylesheet" href="{% static 'app/content/style.css' %}">
     <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
   </head>
 
@@ -28,18 +29,18 @@
         <header class="header">
           <div class="header-left">
             <div class="header-link-container">
-              <a href="/" class="navbar-brand header-link logo-link"
+              <a href="/" class="header-link logo-link"
                 ><img class="logo" src="{% static 'app/content/logo.png' %}" alt="logo" /><span>inoMarket</span></a
               >
             </div>
             <div class="header-link-container">
-              <a class="navbar-brand header-link" href="{% url 'catalog' %}">Каталог</a>
+              <a class="header-link" href="{% url 'catalog' %}">Каталог</a>
             </div>
             <div class="header-link-container">
-              <a class="navbar-brand header-link" href="{% url 'news' %}">Новости</a>
+              <a class="header-link" href="{% url 'news' %}">Новости</a>
             </div>
             <div class="header-link-container">
-              <a class="navbar-brand header-link" href="{% url 'contact' %}">Контакты</a>
+              <a class="header-link" href="{% url 'contact' %}">Контакты</a>
             </div>
           </div>
           <div class="header-right">
@@ -77,6 +78,7 @@
     <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
     <script src="{% static 'app/scripts/bootstrap.js' %}"></script>
     <script src="{% static 'app/scripts/respond.js' %}"></script>
+    <script src="{% static 'app/scripts/resize.js' %}"></script>
     {% block scripts %}{% endblock %}
   </body>
 </html>

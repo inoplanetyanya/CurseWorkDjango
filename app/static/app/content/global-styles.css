@@ -11,8 +11,8 @@
 body {
   font-family: 'Roboto';
   color: #999999;
-  width: 100%;
-  min-width: 960px;
+  /* width: 100%; */
+  min-width: 100vw;
   display: inline-block;
 }
 

@@ -1,64 +1,17 @@
-{% extends "app/layout.html" %} {% block content %}
-<div class="manager-orders-container"></div>
-{% if user.is_staff %}{% for sum in sums%}
-<div class="order-container">
-  <div class="order-info">
-    <div class="order-header">
-      <p class="order-title">Заказ № <strong>{{sum.orderID}}</strong> на сумму <strong>{{sum.totalSum}} руб.</strong></p>
-      <p class="order-status">Статус заказа <span style="color: #{{sum.statusColor}};">{{sum.orderStatus}}</p>
-    </div>
-    {% for order in orders %} {% if sum.orderID == order.orderID %}
-    <div class="order-details">
-      <div class="left-and-center">
-        <div class="left-part">
-          <p>Наименование товара</p>
-          <p>Код товара</p>
-          <p>Стоимость</p>
-          <p>Количество</p>
-          <p>Общая стоимость</p>
-        </div>
-        <div class="right-part">
-          <p>{{order.productName}}</p>
-          <p>{{order.productID}}</p>
-          <p>{{order.productPrice}}</p>
-          <p>{{order.productCount}}</p>
-          <p>{{order.sumForCount}}</p>
-        </div>
-      </div>
-      <div class="right-part">
-        <div class="status-buttons">
-          <div class="status-section-first">
-            <a href="" class="status-change-button"></a>
-            <a href="" class="status-change-button"></a>
-            <a href="" class="status-change-button"></a>
-          </div>
-          <div class="status-section-second">
-            <a href="" class="status-change-button"></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    {% endif %} {% endfor %}
-  </div>
-</div>
-{% endfor %}
-{% endif %}
-</div>
-{% endblock %}
-
-
-<!-- {% extends "app/layout.html" %} {% block content %}
+{% extends "app/layout.html" %}{% block content %}
 <div class="manager-orders-container">
-  {% if user.is_staff %}{% for sum in sums%}
-  <div class="tmp">
+  {% if user.is_staff %}
+  {% for sum in sums%}
   <div class="order-container">
-    <div class="tmp2">
     <div class="order-info">
-      <p class="order-title">Заказ № <strong>{{sum.orderID}}</strong> на сумму <strong>{{sum.totalSum}} руб.</strong></p>
-      <p class="order-status">Статус заказа <span style="color: #{{sum.statusColor}};">{{sum.orderStatus}}</p>
-      <p class="order-client">Клиент {{sum.clientID}}</p>
-      {% for order in orders %}{% if sum.orderID == order.orderID %}
-        <div class="order-details">
+      <div class="order-header">
+        <p class="order-title">Заказ № <strong>{{sum.orderID}}</strong> на сумму <strong>{{sum.totalSum}} руб.</strong></p>
+        <p class="order-client">Клиента № <strong>{{sum.clientID}}</strong></p>
+        <p class="order-status">Статус заказа <span style="color: #{{sum.statusColor}};">{{sum.orderStatus}}</p>
+      </div>
+      {% for order in orders %}
+      {% if sum.orderID == order.orderID %}
+      <div class="order-details">
           <div class="left-and-center">
             <div class="left-part">
               <p>Наименование товара</p>
@@ -70,21 +23,27 @@
             <div class="center-part">
               <p>{{order.productName}}</p>
               <p>{{order.productID}}</p>
-              <p>{{order.pricePrice}}</p>
+              <p>{{order.productPrice}}</p>
               <p>{{order.productCount}}</p>
               <p>{{order.sumForCount}}</p>
             </div>
           </div>
-          <div class="right-part">
-            
-          </div>
-        </div>
-        {% endif %}{% endfor %}
       </div>
-      
+      {% endif %} {% endfor %}
     </div>
+      <div class="status-buttons">
+        <div class="status-section-first">
+          <a href="{% url 'approveOrder' parametr=sum.orderID%}" class="status-change-button status-change-approve">Подтвердить</a>
+          <a href="{% url 'rejectOrder' parametr=sum.orderID%}" class="status-change-button status-change-reject">Отклонить</a>
+          <a href="{% url 'resetOrder' parametr=sum.orderID%}" class="status-change-button status-change-reset">Сбросить статус</a>
+        </div>
+        <div class="status-section-second">
+          <a href="{% url 'deleteOrder' parametr=sum.orderID%}" class="status-change-button status-change-delete">Удалить</a>
+        </div>
+      </div>
+    
   </div>
-</div>
   {% endfor %}
+  {% endif %}
 </div>
-{% endif %} {% endblock %} -->
+{% endblock %}

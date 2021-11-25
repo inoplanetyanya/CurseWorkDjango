@@ -1,18 +1,37 @@
 {% extends "app/layout.html" %} {% block content %}
 <div class="client-orders-container">
-  {% for sum in sums %}
-  <p>Заказ № {{sum.orderID}} на сумму {{sum.totalSum}} руб.</p>
-  <p>Статус заказа: <span style="color: #{{sum.statusColor}};">{{sum.orderStatus}}</span></p>
-  {% for order in orders %} {% if sum.orderID == order.orderID%}
+  <!-- TODO Resyle -->
+
+ {% for sum in sums%}
   <div class="order-container">
-    <div class="product-image-container">
-      <img class="product-image" src="/media/{{order.productImage}}" />
-    </div>
-    <div class="product-name-price">
-      <p class="product-name">{{order.productName}}</p>
-      <p class="product-price">{{order.productPrice}} руб.</p>
+    <div class="order-info">
+      <div class="order-header">
+        <p class="order-title">Заказ № <strong>{{sum.orderID}}</strong> на сумму <strong>{{sum.totalSum}} руб.</strong></p>
+        <p class="order-status">Статус заказа <span style="color: #{{sum.statusColor}};">{{sum.orderStatus}}</p>
+      </div>
+        {% for order in orders %} {% if sum.orderID == order.orderID %}
+        <div class="order-details">
+          <div class="product-image">
+            <img src="/media/{{order.productImage}}" alt="" />
+          </div>
+          <div class="left-part">
+            <p>Наименование товара</p>
+            <p>Код товара</p>
+            <p>Стоимость</p>
+            <p>Количество</p>
+            <p>Общая стоимость</p>
+          </div>
+          <div class="right-part">
+            <p>{{order.productName}}</p>
+            <p>{{order.productID}}</p>
+            <p>{{order.productPrice}}</p>
+            <p>{{order.productCount}}</p>
+            <p>{{order.sumForCount}}</p>
+          </div>
+        </div>
+        {% endif %} {% endfor %}
     </div>
   </div>
-  {% endif %} {% endfor %} {% endfor %}
+{% endfor %}
 </div>
 {% endblock %}
