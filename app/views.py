@@ -145,9 +145,26 @@ def product(request, parametr):
 def managerOrders(request):
     """Renders the about page."""
 
-    querySum = 'select o.id, o.client_id as clientID, o.order_id as orderID, sum(p.price) as totalSum, s.text as orderStatus, s.colorHEX as statusColor from Products as p join Orders as o on o.product_id = p.id join Statuses as s on o.status_id = s.id group by o.order_id order by s.id, o.date'
+    querySum = '''select 
+    o.id, o.client_id as clientID, o.order_id as orderID,
+    sum(p.price) as totalSum,
+    s.text as orderStatus, s.colorHEX as statusColor
+    from Products as p
+    join Orders as o
+    on o.product_id = p.id
+    join Statuses as s
+    on o.status_id = s.id 
+    group by o.order_id 
+    order by s.id, o.date'''
 
-    queryOrders = 'select p.id, o.order_id as orderID, o.client_id as clientID, p.product_id as productID, p.name as productName, p.price as priceForProduct, count(p.id) as countOfProduct, sum(p.price) as sumForCount from Orders AS o join Products as p on o.product_id = p.id group by p.id, o.order_id'
+    queryOrders = '''select
+    o.client_id as clientID, o.order_id as orderID,
+    p.id, p.product_id as productID, p.name as productName,
+    p.price as productPrice, count(p.id) as productCount, sum(p.price) as sumForCount
+    from Orders as o
+    join Products as p
+    on o.product_id = p.id
+    group by p.id, o.order_id'''
 
     orders = Order.objects.raw(queryOrders)
     # Нужные поля объекта:
@@ -181,18 +198,24 @@ def managerOrders(request):
 
 def clientCart(request):
 
-    client = User.objects.get(id = request.user.id)
+    queryCart = '''select
+    c.id, c.product_id,
+    p.name as productName, p.price as productPrice, p.image as productImage,
+    p.product_id as productID, sum(p.price) as sumForCount, count(p.id) as productCount
+    from Carts as c
+    join Products as p
+    on p.id = c.product_id
+    where c.client_id = 
+    ''' + str(request.user.id) + ' group by productID'
 
-    queryCart = 'select c.client_id, c.product_id, c.product_name from Carts as c'
-
-    carts = Cart.objects.filter(client = client)
+    carts = Cart.objects.raw(queryCart)
 
     # print('\n\n\t\t\t---Клиент: ', client.query, '\n')
     # print('\n\n\t\t\t---Корзина: ', carts.query, '\n')
 
     totalSum = 0
     for cart in carts:
-        totalSum += cart.product.price
+        totalSum += cart.product.price * cart.productCount
 
     assert isinstance(request, HttpRequest)
     return render(
@@ -238,7 +261,17 @@ def makeOrders(request, parametr):
 
 def clientOrders(request):
 
-    queryOrders = 'select p.name as productName, p.product_id as productID, p.price as productPrice, count(p.product_id) as productCount, p.image as productImage, o.order_id as orderID, o.product_id, o.client_id as clientID, sum(p.price) as sumForCount, p.id from Orders as o join Products as p on p.id = o.product_id where clientID = ' + str(request.user.id) + ' group by clientID, productID, orderID'
+    queryOrders = '''select 
+    p.name as productName, p.product_id as productID, p.price as productPrice,
+    count(p.product_id) as productCount, p.image as productImage,
+    o.order_id as orderID, o.product_id, o.client_id as clientID,
+    sum(p.price) as sumForCount, p.id 
+    from Orders as o 
+    join Products as p
+    on p.id = o.product_id
+    where clientID = ''' + str(request.user.id) + '''
+    group by clientID, productID, orderID'''
+    
     orders = Order.objects.raw(queryOrders)
     # Нужные поля:
     # productID - код товара
@@ -250,7 +283,19 @@ def clientOrders(request):
     # clientID - id клиента (индекс в таблице)
     # orderID - номер заказа (поле из таблицы Orders, не индекс таблицы)
 
-    querySum = 'select o.id, o.client_id as clientID, o.order_id as orderID, sum(p.price) as totalSum, s.text as orderStatus, s.colorHEX as statusColor from Products as p join Orders as o on o.product_id = p.id join Statuses as s on o.status_id = s.id where clientID = ' + str(request.user.id) + ' group by orderID, clientID order by o.date'
+    querySum = '''select
+    o.id, o.client_id as clientID, o.order_id as orderID,
+    sum(p.price) as totalSum,
+    s.text as orderStatus, s.colorHEX as statusColor
+    from Products as p
+    join Orders as o
+    on o.product_id = p.id
+    join Statuses as s
+    on o.status_id = s.id
+    where clientID = ''' + str(request.user.id) + '''
+    group by orderID, clientID
+    order by o.date'''
+
     sums = Order.objects.raw(querySum)
     # Нужные поля:
     # clientID - id клиента (индекс в таблице)
