@@ -1,5 +1,15 @@
 {% extends "app/layout.html" %} {% block content %}
 <div class="catalog-container">
+  <div class="toggle-categories">
+    <a class="toggle-categories-btn"><p class="toggle-categories-btn-text">Показать категории</p></a>
+  </div>
+  <div class="categories hidden">
+  {% for category in categories%}
+    <div class="category">
+      <a class="category-link" href="{% url 'catergory' parametr=category.id %}"><p class="product-details">{{category.name}}</p></a>
+    </div>
+  {% endfor %}
+  </div>
   {% for product in products %}
   <div class="product-container">
     <div class="product-left">
@@ -15,7 +25,9 @@
     <div class="product-right">
       <p class="product-price">{{product.price}} <span class="rub">руб.</span></p>
       <div class="buttons">
+        {% if user.is_authenticated %}
         <a class="tocart-link btn-link" href="{% url 'addToCart' parametr=product.id %}"><p class="product-details">+&nbsp;В конзину</p></a>
+        {% endif %}
         <a class="details-link btn-link" href="{% url 'product' parametr=product.product_id %}"><p class="product-details">Подробнее</p></a>
       </div>
     </div>
