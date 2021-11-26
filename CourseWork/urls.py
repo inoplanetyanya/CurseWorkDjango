@@ -26,7 +26,8 @@ urlpatterns = [
     # Examples:
     url(r'^$', app.views.home, name='home'),
     url(r'^catalog$', app.views.catalog, name='catalog'),
-    url(r'^(?P<parametr>\d+)/$', app.views.product, name='product'),
+    url(r'^catalog/(?P<parametr>\d+)/$', app.views.product, name='product'),
+    url(r'^catalog/category/(?P<parametr>\d+)/$', app.views.catergory, name='catergory'),
     url(r'^contact$', app.views.contact, name='contact'),
     url(r'^news$', app.views.news, name='news'),
     url(r'^about$', app.views.about, name='about'),
