@@ -609,4 +609,60 @@ body {
       }
     }
   }
+
+  // Регистрация
+  .registration-container {
+    margin: 10px 20px;
+    // @extend %FlexColumnCenter;
+
+    .registration-title {
+      margin: 10px auto;
+      text-align: center;
+    }
+
+    form {
+      div {
+        @extend %FlexColumnCenter;
+
+        p {
+          margin: 10px 0;
+          label {
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+          }
+
+          input {
+            display: block;
+            margin: 10px auto;
+            border-radius: 6px;
+            border: 1px solid #000000;
+            font-size: 16px;
+            text-align: center;
+            line-height: 30px;
+            width: 250px;
+            padding: 5px;
+          }
+
+          .helptext {
+            display: block;
+            text-align: center;
+          }
+        }
+
+        ul {
+          margin: 0 auto;
+          width: 600px;
+
+          li {
+            margin: 2px 0;
+          }
+        }
+
+        .registration-button {
+          @extend %Button;
+        }
+      }
+    }
+  }
 }
