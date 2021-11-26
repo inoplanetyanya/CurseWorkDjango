@@ -9,9 +9,11 @@
       <h2 class="product-name">{{product.name}}</h2>
       <p class="product-id">Код товара: {{product.product_id}}</p>
       <p class="product-price">{{product.price}} руб.</p>
+      {% if user.is_authenticated %}
       <a href="{% url 'addToCart' parametr=product.id %}" class="add-to-catr-link"
         ><div class="product-buy-button"><span class="plus">+&nbsp;</span>В корзину</div></a
       >
+      {% endif %}
     </div>
   </div>
   <div class="product-bot-section">
@@ -33,7 +35,7 @@
       </form>
 
       {% else %}
-      <h3>Авторизуйтесь для добавления отзывов</h3>
+      <h3 class="auth-ask">Авторизуйтесь для добавления отзывов</h3>
       {% endif %} {% for comment in comments %}
       <div class="comment-container">
         <p class="comment-title">

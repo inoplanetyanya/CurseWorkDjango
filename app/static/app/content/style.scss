@@ -165,9 +165,29 @@ body {
 
   // Каталог
   .catalog-container {
-    // @extend %FlexColumn;
-    // justify-content: space-between;
     margin: 10px 20px;
+
+    .toggle-categories-btn {
+      @extend %Button;
+      margin: 0 auto 10px auto;
+    }
+
+    .categories {
+      border: 1px solid #999999;
+      border-radius: 6px;
+
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      .category-link {
+        @extend %Button;
+      }
+    }
+
+    .hidden {
+      display: none;
+    }
 
     .product-container {
       @extend %FlexRow;
@@ -286,6 +306,10 @@ body {
           font-size: 20px;
           text-align: center;
           margin: 10px;
+        }
+
+        .auth-ask {
+          text-align: center;
         }
 
         .add-comment-title {

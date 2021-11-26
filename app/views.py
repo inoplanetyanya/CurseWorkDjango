@@ -13,7 +13,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 from app.forms import CommentForm
 
-from .models import Cart, Comment, Order, Product, Status
+from .models import Cart, Comment, Order, Product, Status, Сategories
 
 import random
 
@@ -68,6 +68,26 @@ def news(request):
 def catalog(request):
     """Renders the about page."""
     products = Product.objects.all().order_by('price')
+    categories = Сategories.objects.all()
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/catalog.html',
+        {
+            'title': 'Товары',
+            'categories': categories,
+            'products': products,
+            'year':datetime.now().year,
+            }
+        )
+
+def catergory(request, parametr):
+    query = '''select * from Products as p 
+    join Сategories as c on p.category_id = c.id
+    where c.id = 
+    ''' + str(parametr)
+
+    products = Product.objects.raw(query)
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -304,8 +324,8 @@ def clientOrders(request):
     # orderStatus - статус заказа
     # statusColor - цвет статуса
 
-    print('\n\n\t\t\t---Заказы клиента: ', orders.query, '\n')
-    print('\n\n\t\t\t---Cуммы заказов клиента: ', sums.query, '\n')
+    # print('\n\n\t\t\t---Заказы клиента: ', orders.query, '\n')
+    # print('\n\n\t\t\t---Cуммы заказов клиента: ', sums.query, '\n')
 
     assert isinstance(request, HttpRequest)
     return render(
