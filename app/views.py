@@ -2,6 +2,7 @@
 Definition of views.
 """
 
+from typing import Any
 from django.contrib.auth.models import User
 from django.db.models import query
 from django.shortcuts import render, redirect
@@ -9,11 +10,15 @@ from django.http import HttpRequest
 from django.template import RequestContext
 from datetime import datetime
 
+import types
+
+from django.db.models import Value
+
 from django.contrib.auth.forms import UserCreationForm
 
 from app.forms import CommentForm
 
-from .models import Cart, Comment, Order, Product, Status, Сategories
+from .models import Cart, Comment, Images, Order, Product, Status, Сategories
 
 import random
 
@@ -66,9 +71,43 @@ def news(request):
     )
 
 def catalog(request):
-    """Renders the about page."""
-    products = Product.objects.all().order_by('price')
+
+    q = '''
+    select
+    p.id,
+    p.name as productName,
+    p.product_id as productCode,
+    p.description as productDescription,
+    p.price as productPrice
+    from Products as p
+    '''
+
+    products_tmp = Product.objects.raw(q)
+
+    # products_tmp = Product.objects.all()
+
+    class Product_tmp:
+        def __init__(self, product, images):
+            self.productID = product.id
+            self.productCode = product.productCode
+            self.productName = product.productName
+            self.productDescription = product.productDescription
+            self.productPrice = product.productPrice
+            self.productImages = []
+            for img in images:
+                self.productImages.append(str(img.img.url))
+            self.productImage = self.productImages[0]
+
+    products = []
+
+    for product in products_tmp:
+        images = Images.objects.filter(album_id = product.album_id)
+        products.append(Product_tmp(product, images))
+
     categories = Сategories.objects.all()
+
+    print('\n\n\t\t\t--- Каталог:\n' + str(products) + '\n')
+
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -77,6 +116,7 @@ def catalog(request):
             'title': 'Товары',
             'categories': categories,
             'products': products,
+            # 'images': images,
             'year':datetime.now().year,
             }
         )
@@ -378,3 +418,20 @@ def deleteOrder(request, parametr):
         order.delete()
 
     return redirect('manager-orders')
+
+def imgs(request):
+    query = 'select * from Images'
+
+    images = Images.objects.raw(query)
+
+    print("\n\n\t\t\t---Картинки:\n\n" + str(images.query) + "\n\n")
+
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/imgs.html',
+        {
+            'images': images,
+            'year':datetime.now().year,
+            }
+        )

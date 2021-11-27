@@ -41,6 +41,9 @@ urlpatterns = [
     url(r'^deleteOrder(?P<parametr>\d+)/$', app.views.deleteOrder, name='deleteOrder'),
     url(r'^resetOrder(?P<parametr>\d+)/$', app.views.resetOrder, name='resetOrder'),
     url(r'^manager-orders$', app.views.managerOrders, name='manager-orders'),
+
+    url(r'^imgs$', app.views.imgs, name='imgs'),
+
     url(r'^registration$', app.views.registration, name='registration'),
     url(r'^login/$',
         django.contrib.auth.views.login,

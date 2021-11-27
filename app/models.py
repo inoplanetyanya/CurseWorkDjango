@@ -22,11 +22,34 @@ class Сategories(models.Model):
     verbose_name = "Категория"
     verbose_name_plural = "Категории"
 
+class Album(models.Model):
+  name = models.CharField(max_length = 150, unique = True, verbose_name = 'Название альбома')
+
+  def __str__(self):
+    return self.name
+
+  class Meta:
+    db_table = "Albums"
+    verbose_name = "Альбом"
+    verbose_name_plural = "Альбомы"
+
+class Images(models.Model):
+  album = models.ForeignKey(Album, on_delete = models.CASCADE, verbose_name = 'Альбом')
+  img = models.FileField(default = 'placeholder/placeholder.png', verbose_name = 'Путь к картинке')
+
+  def __str__(self):
+    return self.album.name + " | - " + self.img.url
+
+  class Meta:
+    db_table = "Images"
+    verbose_name = "Картинка"
+    verbose_name_plural = "Картинки"
+
 class Product(models.Model):
   product_id = models.CharField(max_length = 150, unique = True, verbose_name = 'Код товара')
   name = models.CharField(max_length = 150, verbose_name = 'Название товара')
   price = models.DecimalField(max_digits=10, decimal_places = 2, verbose_name = 'Цена товара', default = 9999999)
-  image = models.FileField(default = 'placeholder/placeholder.png', verbose_name = 'Путь к картинке')
+  album = models.ForeignKey(Album, on_delete = models.CASCADE, verbose_name = 'Альбом')
   description = models.TextField(verbose_name = 'Описание')
   category = models.ForeignKey(Сategories, on_delete = models.CASCADE, verbose_name = 'Категория')
 
@@ -41,6 +64,8 @@ class Product(models.Model):
     ordering = ["product_id"]
     verbose_name = "Продукт"
     verbose_name_plural = "Продукты"
+
+
 
 class Comment(models.Model):
   text = models.TextField(verbose_name = 'Отзыв')
@@ -101,11 +126,25 @@ class Cart(models.Model):
     verbose_name = "Корзина"
     verbose_name_plural = "Корзины"
 
+
+
+# class Albums(models.Model):
+#   product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name="Продукт")
+#   img = models.ForeignKey(Images, on_delete=models.CASCADE, verbose_name='Картинка')
+
+#   def __str__(self):
+#     return self.product.product_id + " | - " + self.img.img
+
+#   class Meta:
+#     db_table = "Albums"
+#     verbose_name = "Альбом"
+#     verbose_name_plural = "Альбомы"
+
 admin.site.register(Product)
 admin.site.register(Сategories)
 admin.site.register(Comment)
 admin.site.register(Order)
 admin.site.register(Cart)
 admin.site.register(Status)
-
-
+admin.site.register(Images)
+admin.site.register(Album)
