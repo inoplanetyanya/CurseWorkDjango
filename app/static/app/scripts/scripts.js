@@ -1,6 +1,6 @@
 $(function() {
   
-  $('.toggle-categories-btn').click(function(){
+  $('.toggle-categories-btn').click(function() {
     if ($(this).text() === 'Показать категории') {
       $(this).text('Скрыть категории');
       $('.categories').toggleClass('hidden')
@@ -9,7 +9,7 @@ $(function() {
       $('.categories').toggleClass('hidden');
     }
   })
-
+  
 });
 
 +function ($) { "use strict";

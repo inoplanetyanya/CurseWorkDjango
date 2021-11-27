@@ -685,6 +685,7 @@ body {
     .controls {
       position: absolute;
       width: 100%;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -701,12 +702,12 @@ body {
     }
 
     .glyphicon-chevron-right {
-      right: 50%;
-      left: 0;
+      // right: 50%;
+      // left: 0;
     }
     .glyphicon-chevron-left {
-      left: 50%;
-      right: 0;
+      // left: 50%;
+      // right: 0;
     }
   }
 
