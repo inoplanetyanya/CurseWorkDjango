@@ -217,18 +217,20 @@ body {
       margin: 10px 0; }
       body .cart-container .cart-info .cart-details .product-image {
         margin: 10px;
-        max-width: 200px; }
+        max-width: 120px; }
         body .cart-container .cart-info .cart-details .product-image img {
           flex: 0 0 auto;
           width: 100%; }
       body .cart-container .cart-info .cart-details .left-and-center .left-part {
         margin: 10px; }
         body .cart-container .cart-info .cart-details .left-and-center .left-part p {
-          margin: 5px; }
+          margin: 5px;
+          white-space: nowrap; }
       body .cart-container .cart-info .cart-details .left-and-center .center-part {
         margin: 10px; }
         body .cart-container .cart-info .cart-details .left-and-center .center-part p {
-          margin: 5px; }
+          margin: 5px;
+          white-space: nowrap; }
       body .cart-container .cart-info .cart-details .right-part {
         margin: 10px; }
         body .cart-container .cart-info .cart-details .right-part .add-to-cart-link:hover {
@@ -242,21 +244,23 @@ body {
       border-radius: 6px;
       margin: 10px 0; }
       body .client-orders-container .order-container .order-info .order-header .order-title {
-        margin: 10px;
-        margin-bottom: 0; }
+        margin: 10px; }
       body .client-orders-container .order-container .order-info .order-header .order-status {
-        margin: 5px 10px;
-        margin-bottom: 0; }
-    body .client-orders-container .order-container .order-details .product-image {
-      margin: 10px;
-      max-width: 200px; }
-      body .client-orders-container .order-container .order-details .product-image img {
-        flex: 0 0 auto;
-        width: 100%; }
-    body .client-orders-container .order-container .order-details .left-part p {
-      margin: 5px; }
-    body .client-orders-container .order-container .order-details .right-part p {
-      margin: 5px; }
+        margin: 10px; }
+    body .client-orders-container .order-container .order-details {
+      margin: 10px; }
+      body .client-orders-container .order-container .order-details .product-image {
+        margin: 10px;
+        max-width: 120px; }
+        body .client-orders-container .order-container .order-details .product-image img {
+          flex: 0 0 auto;
+          width: 100%; }
+      body .client-orders-container .order-container .order-details .left-part p {
+        margin: 5px;
+        white-space: nowrap; }
+      body .client-orders-container .order-container .order-details .right-part p {
+        margin: 5px;
+        white-space: nowrap; }
   body .manager-orders-container {
     margin: 10px 20px; }
     body .manager-orders-container .order-container {
@@ -272,10 +276,18 @@ body {
         margin: 10px; }
       body .manager-orders-container .order-container .order-info .order-details {
         margin: 10px; }
+        body .manager-orders-container .order-container .order-info .order-details .product-image {
+          margin: 10px;
+          max-width: 120px; }
+          body .manager-orders-container .order-container .order-info .order-details .product-image img {
+            flex: 0 0 auto;
+            width: 100%; }
         body .manager-orders-container .order-container .order-info .order-details .left-and-center .left-part p {
-          margin: 5px; }
+          margin: 5px;
+          white-space: nowrap; }
         body .manager-orders-container .order-container .order-info .order-details .left-and-center .center-part p {
-          margin: 5px; }
+          margin: 5px;
+          white-space: nowrap; }
       body .manager-orders-container .order-container .status-buttons {
         justify-content: space-between; }
         body .manager-orders-container .order-container .status-buttons .status-section-first .status-change-approve:hover {

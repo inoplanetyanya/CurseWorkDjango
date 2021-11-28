@@ -46,9 +46,9 @@ class Images(models.Model):
     verbose_name_plural = "Картинки"
 
 class Product(models.Model):
-  product_id = models.CharField(max_length = 150, unique = True, verbose_name = 'Код товара')
-  name = models.CharField(max_length = 150, verbose_name = 'Название товара')
-  price = models.DecimalField(max_digits=10, decimal_places = 2, verbose_name = 'Цена товара', default = 9999999)
+  product_id = models.CharField(max_length = 150, unique = True, verbose_name = 'Код продукта')
+  name = models.CharField(max_length = 150, verbose_name = 'Название продукта')
+  price = models.DecimalField(max_digits=10, decimal_places = 2, verbose_name = 'Цена продукта', default = 9999999)
   album = models.ForeignKey(Album, on_delete = models.CASCADE, verbose_name = 'Альбом')
   description = models.TextField(verbose_name = 'Описание')
   category = models.ForeignKey(Сategories, on_delete = models.CASCADE, verbose_name = 'Категория')
@@ -71,7 +71,7 @@ class Comment(models.Model):
   text = models.TextField(verbose_name = 'Отзыв')
   date = models.DateTimeField(default = datetime.now(), db_index = True, verbose_name = "Дата")
   author = models.ForeignKey(User, on_delete = models.CASCADE, verbose_name = "Автор")
-  product = models.ForeignKey(Product, on_delete = models.CASCADE, verbose_name = 'Товар')
+  product = models.ForeignKey(Product, on_delete = models.CASCADE, verbose_name = 'Продукт')
 
   def __str__(self):
     return '%s %s' % (self.date, self.author)

@@ -84,8 +84,6 @@ def catalog(request):
 
     products_tmp = Product.objects.raw(q)
 
-    # products_tmp = Product.objects.all()
-
     class Product_tmp:
         def __init__(self, product, images):
             self.productID = product.id
@@ -106,17 +104,14 @@ def catalog(request):
 
     categories = Сategories.objects.all()
 
-    print('\n\n\t\t\t--- Каталог:\n' + str(products) + '\n')
-
     assert isinstance(request, HttpRequest)
     return render(
         request,
         'app/catalog.html',
         {
-            'title': 'Товары',
+            'title': 'Продукты',
             'categories': categories,
             'products': products,
-            # 'images': images,
             'year':datetime.now().year,
             }
         )
@@ -133,7 +128,7 @@ def catergory(request, parametr):
         request,
         'app/catalog.html',
         {
-            'title': 'Товары',
+            'title': 'Продукты',
             'products': products,
             'year':datetime.now().year,
             }
@@ -165,11 +160,36 @@ def registration(request):
     )
 
 def product(request, parametr):
-    """Renders the about page."""
-    try:
-        product = Product.objects.get(product_id = parametr)
-    except Product.DoesNotExist:
-        product = None
+    q = '''
+    select
+    p.id,
+    p.name as productName,
+    p.product_id as productCode,
+    p.description as productDescription,
+    p.price as productPrice
+    from Products as p
+    where productCode = 
+    ''' + str(parametr)
+
+    products_tmp = Product.objects.raw(q)
+
+    class Product_tmp:
+        def __init__(self, product, images):
+            self.productID = product.id
+            self.productCode = product.productCode
+            self.productName = product.productName
+            self.productDescription = product.productDescription
+            self.productPrice = product.productPrice
+            self.productImages = []
+            for img in images:
+                self.productImages.append(str(img.img.url))
+            self.productImage = self.productImages[0]
+
+    products = []
+
+    for product in products_tmp:
+        images = Images.objects.filter(album_id = product.album_id)
+        products.append(Product_tmp(product, images))
 
     try:
         comments = Comment.objects.filter(product = product)
@@ -194,21 +214,23 @@ def product(request, parametr):
         request,
         'app/product.html',
         {
-            'product': product,
+            'product': products[0],
             'comments': comments,
             'form': form,
-            'title':'Товар',
+            'title':'Продукт',
             'year':datetime.now().year,
         }
     )
 
 def managerOrders(request):
-    """Renders the about page."""
 
     querySum = '''select 
-    o.id, o.client_id as clientID, o.order_id as orderID,
+    o.id,
+    o.client_id as clientID,
+    o.order_id as orderID,
     sum(p.price) as totalSum,
-    s.text as orderStatus, s.colorHEX as statusColor
+    s.text as orderStatus,
+    s.colorHEX as statusColor
     from Products as p
     join Orders as o
     on o.product_id = p.id
@@ -217,24 +239,53 @@ def managerOrders(request):
     group by o.order_id 
     order by s.id, o.date'''
 
-    queryOrders = '''select
-    o.client_id as clientID, o.order_id as orderID,
-    p.id, p.product_id as productID, p.name as productName,
-    p.price as productPrice, count(p.id) as productCount, sum(p.price) as sumForCount
+    qOrders = '''
+    select
+    o.id,
+    o.client_id as clientID,
+    o.order_id as orderID,
+    p.id as prdoductID,
+    p.product_id as productCode,
+    p.name as productName,
+    p.price as productPrice,
+    p.album_id as productAlbum,
+    count(p.id) as productCount,
+    sum(p.price) as sumForCount
     from Orders as o
     join Products as p
     on o.product_id = p.id
     group by p.id, o.order_id'''
 
-    orders = Order.objects.raw(queryOrders)
+    orders_tmp = Order.objects.raw(qOrders)
     # Нужные поля объекта:
     # orderID - номер заказа
     # clientID - id клиента (из таблицы заказов) ? мб не нужно
     # productID - id продукта (pdoduct_id из Product, не id из таблицы)
     # productName - имя продукта
-    # priceForProduct - цена за единицу
+    # productPrice - цена за единицу
     # countOfProduct - количество
     # sumForCount - цена за все количество одного продукта
+
+    class Order_tmp:
+        def __init__(self, product, images):
+            self.orderID = product.orderID
+            self.productID = product.id
+            self.productCode = product.productCode
+            self.productName = product.productName
+            self.productPrice = product.productPrice
+            self.productCount = product.productCount
+            self.sumForCount = product.sumForCount
+            self.productImages = []
+            for img in images:
+                self.productImages.append(str(img.img.url))
+            self.productImage = self.productImages[0]
+
+    orders = []
+
+    for order in orders_tmp:
+        images = Images.objects.filter(album_id = order.productAlbum)
+        print('\n-\n', images.query, '\n-\n')
+        orders.append(Order_tmp(order, images))
 
     sums = Order.objects.raw(querySum)
     # Нужные поля объекта:
@@ -258,24 +309,47 @@ def managerOrders(request):
 
 def clientCart(request):
 
-    queryCart = '''select
-    c.id, c.product_id,
-    p.name as productName, p.price as productPrice, p.image as productImage,
-    p.product_id as productID, sum(p.price) as sumForCount, count(p.id) as productCount
+    qCart = '''
+    select
+    c.id,
+    c.product_id,
+    p.id as productID,
+    p.name as productName,
+    p.price as productPrice,
+    p.product_id as productCode,
+    p.album_id as productAlbum,
+    sum(p.price) as sumForCount,
+    count(p.id) as productCount
     from Carts as c
     join Products as p
     on p.id = c.product_id
     where c.client_id = 
     ''' + str(request.user.id) + ' group by productID'
 
-    carts = Cart.objects.raw(queryCart)
+    carts_tmp = Cart.objects.raw(qCart)
 
-    # print('\n\n\t\t\t---Клиент: ', client.query, '\n')
-    # print('\n\n\t\t\t---Корзина: ', carts.query, '\n')
+    class Cart_tmp:
+        def __init__(self, product, images):
+            self.productID = product.productID
+            self.productCode = product.productCode
+            self.productName = product.productName
+            self.productPrice = product.productPrice
+            self.productCount = product.productCount
+            self.sumForCount = product.sumForCount
+            self.productImages = []
+            for img in images:
+                self.productImages.append(str(img.img.url))
+
+    products = []
+
+    for cart in carts_tmp:
+        images = Images.objects.filter(album_id = cart.productAlbum)
+        print('\n-\n', images.query, '\n-\n')
+        products.append(Cart_tmp(cart, images))
 
     totalSum = 0
-    for cart in carts:
-        totalSum += cart.product.price * cart.productCount
+    for cart in products:
+        totalSum += cart.productPrice * cart.productCount
 
     assert isinstance(request, HttpRequest)
     return render(
@@ -283,7 +357,7 @@ def clientCart(request):
         'app/client-cart.html',
         {
             'totalSum': totalSum,
-            'carts': carts,
+            'products': products,
             'title':'Корзина',
             'year':datetime.now().year,
         }
@@ -321,18 +395,25 @@ def makeOrders(request, parametr):
 
 def clientOrders(request):
 
-    queryOrders = '''select 
-    p.name as productName, p.product_id as productID, p.price as productPrice,
-    count(p.product_id) as productCount, p.image as productImage,
-    o.order_id as orderID, o.product_id, o.client_id as clientID,
-    sum(p.price) as sumForCount, p.id 
-    from Orders as o 
+    queryOrders = '''
+    select 
+    p.name as productName,
+    p.product_id as productCode,
+    p.price as productPrice,
+    p.album_id as productAlbum,
+    count(p.product_id) as productCount,
+    o.order_id as orderID,
+    o.product_id,
+    o.client_id as clientID,
+    sum(p.price) as sumForCount,
+    p.id
+    from Orders as o
     join Products as p
     on p.id = o.product_id
     where clientID = ''' + str(request.user.id) + '''
-    group by clientID, productID, orderID'''
+    group by clientID, productCode, orderID'''
     
-    orders = Order.objects.raw(queryOrders)
+    orders_tmp = Order.objects.raw(queryOrders)
     # Нужные поля:
     # productID - код товара
     # productName - имя товара
@@ -342,6 +423,27 @@ def clientOrders(request):
     # sumForCount - цена за все единицы указанного товара
     # clientID - id клиента (индекс в таблице)
     # orderID - номер заказа (поле из таблицы Orders, не индекс таблицы)
+
+    class Order_tmp:
+        def __init__(self, product, images):
+            self.orderID = product.orderID
+            self.productID = product.id
+            self.productCode = product.productCode
+            self.productName = product.productName
+            self.productPrice = product.productPrice
+            self.productCount = product.productCount
+            self.sumForCount = product.sumForCount
+            self.productImages = []
+            for img in images:
+                self.productImages.append(str(img.img.url))
+            self.productImage = self.productImages[0]
+
+    orders = []
+
+    for order in orders_tmp:
+        images = Images.objects.filter(album_id = order.productAlbum)
+        print('\n-\n', images.query, '\n-\n')
+        orders.append(Order_tmp(order, images))
 
     querySum = '''select
     o.id, o.client_id as clientID, o.order_id as orderID,
@@ -366,6 +468,8 @@ def clientOrders(request):
 
     # print('\n\n\t\t\t---Заказы клиента: ', orders.query, '\n')
     # print('\n\n\t\t\t---Cуммы заказов клиента: ', sums.query, '\n')
+
+    
 
     assert isinstance(request, HttpRequest)
     return render(

@@ -1,32 +1,33 @@
 {% extends "app/layout.html" %} {% block content %}
 <div class="cart-container">
   <div class="cart-info">
-    <p class="cart-title">В вашей корзине товары на сумму <strong>{{totalSum}} руб.</strong></p>
+    <p class="cart-title">В вашей корзине продукты на сумму <strong>{{totalSum}} руб.</strong></p>
     <a class="place-an-order-link" href="{% url 'makeOrders' parametr=0 %}"><div class="place-an-order">Оформить заказ</div></a>
-    {% for cart in carts %}
+    {% for product in products %}
     <div class="cart-details">
       <div class="left-and-center">
         <div class="product-image">
-          <img src="/media/{{cart.productImage}}" alt="" />
+          <!-- <img src="/media/{{cart.productImage}}" alt="" /> -->
+          {% include "app/carousel.html" %}
         </div>
         <div class="left-part">
-          <p>Наименование товара</p>
-          <p>Код товара</p>
+          <p>Наименование</p>
+          <p>Код продукта</p>
+          <p>Стоимость</p>
           <p>Количество</p>
-          <p>Стоимость за единицу</p>
           <p>Общая стоимость</p>
         </div>
         <div class="center-part">
-          <p>{{cart.productName}}</p>
-          <p>{{cart.productID}}</p>
-          <p>{{cart.productCount}}</p>
-          <p>{{cart.productPrice}}</p>
-          <p>{{cart.sumForCount}}</p>
+          <p>{{product.productName}}</p>
+          <p>{{product.productCode}}</p>
+          <p>{{product.productPrice}}</p>
+          <p>{{product.productCount}}</p>
+          <p>{{product.sumForCount}}</p>
         </div>
       </div>
       <div class="right-part">
-        <a href="{% url 'addToCart' parametr=cart.product_id %}" class="add-to-cart-link"><div class="remove-from-cart-button">Добавить</div></a>
-        <a class="remove-from-cart-link" href="{% url 'removeFromCart' parametr=cart.id%}"><div class="remove-from-cart-button">Удалить</div></a>
+        <a href="{% url 'addToCart' parametr=product.productID %}" class="add-to-cart-link"><div class="remove-from-cart-button">Добавить</div></a>
+        <a class="remove-from-cart-link" href="{% url 'removeFromCart' parametr=product.productID%}"><div class="remove-from-cart-button">Удалить</div></a>
       </div>
     </div>
     {% endfor %}

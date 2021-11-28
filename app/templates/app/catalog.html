@@ -17,10 +17,9 @@
         <!-- <img class="product-image" src="{{product.productImage}}" /> -->
         {% include "app/carousel.html" %}
       </div>
-
       <div class="name-id-description">
         <h2 class="product-name">{{product.productName}}</h2>
-        <p class="product-id">Код товара: {{product.productID}}</p>
+        <p class="product-id">Код продукта: {{product.productCode}}</p>
         <p class="product-description">{{product.productDescription}}</p>
       </div>
     </div>
@@ -28,9 +27,9 @@
       <p class="product-price">{{product.productPrice}} <span class="rub">руб.</span></p>
       <div class="buttons">
         {% if user.is_authenticated %}
-        <a class="tocart-link btn-link" href="{% url 'addToCart' parametr=product.id %}"><p class="product-details">+&nbsp;В конзину</p></a>
+        <a class="tocart-link btn-link" href="{% url 'addToCart' parametr=product.productID %}"><p class="product-details">+&nbsp;В конзину</p></a>
         {% endif %}
-        <a class="details-link btn-link" href="{% url 'product' parametr=product.productID %}"><p class="product-details">Подробнее</p></a>
+        <a class="details-link btn-link" href="{% url 'product' parametr=product.productCode %}"><p class="product-details">Подробнее</p></a>
       </div>
     </div>
   </div>

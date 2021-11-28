@@ -391,7 +391,7 @@ body {
 
         .product-image {
           margin: 10px;
-          max-width: 200px;
+          max-width: 120px;
 
           img {
             flex: 0 0 auto;
@@ -406,6 +406,7 @@ body {
             margin: 10px;
             p {
               margin: 5px;
+              white-space: nowrap;
             }
           }
 
@@ -414,6 +415,7 @@ body {
             margin: 10px;
             p {
               margin: 5px;
+              white-space: nowrap;
             }
           }
         }
@@ -454,20 +456,21 @@ body {
         .order-header {
           .order-title {
             margin: 10px;
-            margin-bottom: 0;
+            // margin-bottom: 0;
           }
           .order-status {
-            margin: 5px 10px;
-            margin-bottom: 0;
+            margin: 10px;
+            // margin-bottom: 0;
           }
         }
       }
 
       .order-details {
         @extend %FlexRowCenter;
+        margin: 10px;
         .product-image {
           margin: 10px;
-          max-width: 200px;
+          max-width: 120px;
           img {
             flex: 0 0 auto;
             width: 100%;
@@ -477,12 +480,14 @@ body {
         .left-part {
           p {
             margin: 5px;
+            white-space: nowrap;
           }
         }
 
         .right-part {
           p {
             margin: 5px;
+            white-space: nowrap;
           }
         }
       }
@@ -515,16 +520,27 @@ body {
           @extend %FlexRowCenter;
           margin: 10px;
 
+          .product-image {
+            margin: 10px;
+            max-width: 120px;
+            img {
+              flex: 0 0 auto;
+              width: 100%;
+            }
+          }
+
           .left-and-center {
             @extend %FlexRowCenter;
             .left-part {
               p {
                 margin: 5px;
+                white-space: nowrap;
               }
             }
             .center-part {
               p {
                 margin: 5px;
+                white-space: nowrap;
               }
             }
           }

@@ -12,17 +12,20 @@
       {% for order in orders %}
       {% if sum.orderID == order.orderID %}
       <div class="order-details">
+          <div class="product-image">
+            <img src="{{order.productImage}}" alt="" />
+          </div>
           <div class="left-and-center">
             <div class="left-part">
-              <p>Наименование товара</p>
-              <p>Код товара</p>
+              <p>Наименование</p>
+              <p>Код продукта</p>
               <p>Стоимость</p>
               <p>Количество</p>
               <p>Общая стоимость</p>
             </div>
             <div class="center-part">
               <p>{{order.productName}}</p>
-              <p>{{order.productID}}</p>
+              <p>{{order.productCode}}</p>
               <p>{{order.productPrice}}</p>
               <p>{{order.productCount}}</p>
               <p>{{order.sumForCount}}</p>
