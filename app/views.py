@@ -16,9 +16,9 @@ from django.db.models import Value
 
 from django.contrib.auth.forms import UserCreationForm
 
-from app.forms import CommentForm
+from app.forms import AddAlbumForm, AddImagesForm, AddProductForm, CommentForm, EditUserForm
 
-from .models import Cart, Comment, Images, Order, Product, Status, Сategories
+from .models import Album, Cart, Client, Comment, Images, News, Order, Product, Status, Сategories
 
 import random
 
@@ -60,11 +60,27 @@ def about(request):
 
 def news(request):
     """Renders the about page."""
+    news = News.objects.all()
     assert isinstance(request, HttpRequest)
     return render(
         request,
         'app/news.html',
         {
+            'news' : news,
+            'title':'Новости',
+            'year':datetime.now().year,
+        }
+    )
+
+def news_post(request, parametr):
+    print('\n\n\IM HERE!!!!!!!!!!!!!!\n\n')
+    post = News.objects.get(id = parametr)
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/news_post.html',
+        {
+            'post' : post,
             'title':'Новости',
             'year':datetime.now().year,
         }
@@ -77,7 +93,8 @@ def catalog(request):
     p.id,
     p.name as productName,
     p.product_id as productCode,
-    p.description as productDescription,
+    p.description_short as productDescriptionShort,
+    p.description_full as productDescriptionFull,
     p.price as productPrice
     from Products as p
     '''
@@ -89,7 +106,8 @@ def catalog(request):
             self.productID = product.id
             self.productCode = product.productCode
             self.productName = product.productName
-            self.productDescription = product.productDescription
+            self.productDescriptionShort = product.productDescriptionShort
+            self.productDescriptionFull = product.productDescriptionFull
             self.productPrice = product.productPrice
             self.productImages = []
             for img in images:
@@ -128,7 +146,7 @@ def catergory(request, parametr):
         request,
         'app/catalog.html',
         {
-            'title': 'Продукты',
+            'title': 'Каталог',
             'products': products,
             'year':datetime.now().year,
             }
@@ -147,6 +165,7 @@ def registration(request):
             reg_f.date_joined = datetime.now() # дата регистрации
             reg_f.last_login = datetime.now() # дата последней авторизации
             reg_f.save() # сохраняем изменения после добавления данных
+            Client.objects.create(username = reg_f.username, user = User.objects.get(username = reg_f.username))
             return redirect('home') # переадресация на главную страницу после регистрации
     else:
         regform = UserCreationForm() # создание объекта формы для ввода данных нового пользователя
@@ -165,7 +184,8 @@ def product(request, parametr):
     p.id,
     p.name as productName,
     p.product_id as productCode,
-    p.description as productDescription,
+    p.description_short as productDescriptionShort,
+    p.description_full as productDescriptionFull,
     p.price as productPrice
     from Products as p
     where productCode = 
@@ -178,7 +198,8 @@ def product(request, parametr):
             self.productID = product.id
             self.productCode = product.productCode
             self.productName = product.productName
-            self.productDescription = product.productDescription
+            self.productDescriptionShort = product.productDescriptionShort
+            self.productDescriptionFull = product.productDescriptionFull
             self.productPrice = product.productPrice
             self.productImages = []
             for img in images:
@@ -228,6 +249,7 @@ def managerOrders(request):
     o.id,
     o.client_id as clientID,
     o.order_id as orderID,
+    o.date as orderDate,
     sum(p.price) as totalSum,
     s.text as orderStatus,
     s.colorHEX as statusColor
@@ -271,10 +293,11 @@ def managerOrders(request):
             self.orderID = product.orderID
             self.productID = product.id
             self.productCode = product.productCode
-            self.productName = product.productName
+            self.productName = product.productName[:40]
             self.productPrice = product.productPrice
             self.productCount = product.productCount
             self.sumForCount = product.sumForCount
+            # self.orderDate = product.orderDate
             self.productImages = []
             for img in images:
                 self.productImages.append(str(img.img.url))
@@ -330,9 +353,10 @@ def clientCart(request):
 
     class Cart_tmp:
         def __init__(self, product, images):
+            self.cartID = product.id
             self.productID = product.productID
             self.productCode = product.productCode
-            self.productName = product.productName
+            self.productName = product.productName[:40]
             self.productPrice = product.productPrice
             self.productCount = product.productCount
             self.sumForCount = product.sumForCount
@@ -351,11 +375,17 @@ def clientCart(request):
     for cart in products:
         totalSum += cart.productPrice * cart.productCount
 
+    profileFilled = False
+    client = Client.objects.get(username = request.user.username)
+    if client.first_name and client.last_name and client.phone and client.email:
+        profileFilled = True
+
     assert isinstance(request, HttpRequest)
     return render(
         request,
         'app/client-cart.html',
         {
+            'profileFilled': profileFilled,
             'totalSum': totalSum,
             'products': products,
             'title':'Корзина',
@@ -429,7 +459,7 @@ def clientOrders(request):
             self.orderID = product.orderID
             self.productID = product.id
             self.productCode = product.productCode
-            self.productName = product.productName
+            self.productName = product.productName[:40]
             self.productPrice = product.productPrice
             self.productCount = product.productCount
             self.sumForCount = product.sumForCount
@@ -447,6 +477,7 @@ def clientOrders(request):
 
     querySum = '''select
     o.id, o.client_id as clientID, o.order_id as orderID,
+    o.date as orderDate,
     sum(p.price) as totalSum,
     s.text as orderStatus, s.colorHEX as statusColor
     from Products as p
@@ -539,3 +570,112 @@ def imgs(request):
             'year':datetime.now().year,
             }
         )
+
+def editUser(request):
+    if request.method == "POST":
+        userForm = EditUserForm(request.POST)
+        if userForm.is_valid():
+            uf = userForm.save(commit=False)
+            client = Client.objects.get(username = request.user.username)
+            client.first_name = uf.first_name
+            client.last_name = uf.last_name
+            client.email = uf.email
+            client.phone = uf.phone
+            client.save()
+            user = User.objects.get(username = request.user.username)
+            user.first_name = uf.first_name
+            user.last_name = uf.last_name
+            user.email = uf.email
+            user.save()
+            return redirect('profile')
+    else:
+        client = Client.objects.get(username = request.user.username)
+        userForm = EditUserForm(initial={
+        'first_name': client.first_name,
+        'last_name': client.last_name,
+        'email': client.email,
+        'phone': client.phone,
+        }) # создание объекта формы для ввода данных нового пользователя
+    return render(
+        request,
+        'app/edit-user.html',
+        {
+            'userForm': userForm, # передача формы в шаблон веб-страницы
+            'year':datetime.now().year,
+        }
+    )
+
+def profile(request):
+    client = Client.objects.get(username = request.user.username)
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/profile.html',
+        {
+            'client' : client,
+            'year':datetime.now().year,
+        }
+    )
+
+def addProduct(request):
+    # assert isinstance(request, HttpRequest)
+    if request.method == "POST":
+        # addAlbumForm = AddAlbumForm(request.POST)
+        # if addAlbumForm.is_valid():
+        #     a = addAlbumForm.save(commit=False)
+        #     if not Album.objects.filter(name = a.name).exist():
+        #         Album.objects.create(name = a.name)
+        #     album = Album.objects.get(name = a.name)
+        
+        # addImagesForm = AddImagesForm(request.POST)
+        # if addImagesForm.is_valid():
+        #     i = addImagesForm.save(commit=False)
+        #     for img in i.images:
+        #         Images.objects.create(album = album, img = img)
+
+
+        addProductForm = AddProductForm(request.POST, request.FILES)
+        files = request.FILES.getlist('img_collection')
+        print(files)
+        if addProductForm.is_valid():
+            pf = addProductForm.save(commit=False)
+            print('\n\n\n HELLOOOOOOO?', files, '\n\n\n')
+            if not Album.objects.filter(name = pf.album_name).exists():
+                Album.objects.create(name = pf.album_name)
+            album = Album.objects.get(name = pf.album_name)
+
+            if not Сategories.objects.filter(name = pf.category).exists():
+                Сategories.objects.create(name = pf.category)
+            category = Сategories.objects.get(name = pf.category)
+
+            Product.objects.create(
+                product_id = pf.product_id,
+                name = pf.product_name,
+                album = album,
+                description_short = pf.description_short,
+                description_full = pf.description_full,
+                category = category,
+                price = pf.price
+            )
+
+            for file in files:
+                Images.objects.create(album = album, img = file)
+
+            # Images.objects.create(album = album, img = pf.img_collection)
+            print(pf.img_collection)
+            return redirect('catalog')
+    else:
+        addAlbumForm = AddAlbumForm()
+        addImagesForm = AddImagesForm()
+        addProductForm = AddProductForm()
+    return render(
+        request,
+        'app/add-product.html',
+        {
+            # 'addAlbumForm': addAlbumForm,
+            # 'addImagesForm': addImagesForm,
+            'addProductForm': addProductForm,
+            'title': 'Добавть продукт',
+            'year':datetime.now().year,
+        }
+    )

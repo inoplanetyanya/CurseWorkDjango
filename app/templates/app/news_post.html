@@ -1,0 +1,10 @@
+{% extends "app/layout.html" %} {% block content %}
+<div class="post-container">
+  <div class="img-container">
+    <img src="{{post.image.url}}">
+  </div>
+  <h3 class="post-title">{{post.title}}</h3>
+  <p class="post-text">{{post.text}}</p>
+  <p class="post-date">{{post.date}}</p>
+</div>
+{% endblock %}

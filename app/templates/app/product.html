@@ -10,7 +10,7 @@
       <h2 class="product-name">{{product.productName}}</h2>
       <p class="product-id">Код продукта: {{product.productCode}}</p>
       <p class="product-price">{{product.productPrice}} руб.</p>
-      {% if user.is_authenticated %}
+      {% if user.is_authenticated and not user.is_superuser and not user.is_staff %}
       <a href="{% url 'addToCart' parametr=product.productID %}" class="add-to-catr-link"
         ><div class="product-buy-button"><span class="plus">+&nbsp;</span>В корзину</div></a
       >
@@ -20,7 +20,7 @@
   <div class="product-bot-section">
     <div class="product-description-container">
       <h2 class="product-description-title">Описание</h2>
-      <pre class="product-desctiption">{{product.productDescription}}</pre>
+      <p class="product-desctiption">{{product.productDescriptionFull}}</p>
     </div>
     <div class="product-comments">
       <h2 class="product-comments-title">Отзывы</h2>

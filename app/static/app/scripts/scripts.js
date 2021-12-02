@@ -9,7 +9,25 @@ $(function() {
       $('.categories').toggleClass('hidden');
     }
   })
+  // inputs = $('.add-product-container input')
+  // for (let i = 0; i < inputs.length; i++) {
+  //   inputs[i].id = 'product_input_' + i;
+  // }
+
+  // $('#product_input_0').on('input', function(e) {
+  //   $('#product_input_5').val($(this).val())
+  //   // console.log($('#product_images_select').val())
+  // })
   
+  // // $('#product_input_7').on('input', function(e) {
+  // //   let paths = [];
+  // //   let files = document.getElementById('product_input_7').files;
+  // //   // console.log(files);
+  // //   for (let i = 0; i < files.length)
+  // //   $('#product_input_6').val()
+
+  //   console.log()
+  // })
 });
 
 +function ($) { "use strict";

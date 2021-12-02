@@ -1,5 +1,10 @@
 {% extends "app/layout.html" %} {% block content %}
 <div class="catalog-container">
+  {% if user.is_superuser %}
+  <div class="add-product">
+    <a class="add-product-link" href="{% url 'add-product' %}"><p class="product-details">Добавить продукт</p></a>
+  </div>
+  {% endif %}
   <div class="toggle-categories">
     <a class="toggle-categories-btn"><p class="toggle-categories-btn-text">Показать категории</p></a>
   </div>
@@ -20,13 +25,13 @@
       <div class="name-id-description">
         <h2 class="product-name">{{product.productName}}</h2>
         <p class="product-id">Код продукта: {{product.productCode}}</p>
-        <p class="product-description">{{product.productDescription}}</p>
+        <p class="product-description">{{product.productDescriptionShort}}</p>
       </div>
     </div>
     <div class="product-right">
       <p class="product-price">{{product.productPrice}} <span class="rub">руб.</span></p>
       <div class="buttons">
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated and not user.is_superuser and not user.is_staff %}
         <a class="tocart-link btn-link" href="{% url 'addToCart' parametr=product.productID %}"><p class="product-details">+&nbsp;В конзину</p></a>
         {% endif %}
         <a class="details-link btn-link" href="{% url 'product' parametr=product.productCode %}"><p class="product-details">Подробнее</p></a>

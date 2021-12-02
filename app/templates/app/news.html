@@ -1,3 +1,14 @@
 {% extends "app/layout.html" %} {% block content %}
-<div class="news-container"></div>
+<div class="news-container">
+  {% for post in news %}
+  <div class="news-post-container">
+    <a href="{% url 'post' parametr=post.id %}" class="post-link">
+      <h3 class="post-title">{{post.title}}</h3>
+    </a>
+    <p class="post-date">{{post.date}}</p>
+  </div>
+  {% endfor %}
+</div>
+
+
 {% endblock %}

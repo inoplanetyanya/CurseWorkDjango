@@ -7,24 +7,24 @@ body .header .header-left, body .header .header-right, body .catalog-container .
   flex-direction: row;
   flex-wrap: nowrap; }
 
-body .catalog-container .product-container .product-left .name-id-description, body .product-container .product-top-section .product-buy, body .cart-container .cart-info .cart-details .left-and-center .left-part, body .cart-container .cart-info .cart-details .left-and-center .center-part, body .client-orders-container .order-container .order-info {
+body .catalog-container .product-container .product-left .name-id-description, body .product-container .product-top-section .product-buy, body .cart-container .cart-info .cart-details .left-and-center .left-part, body .cart-container .cart-info .cart-details .left-and-center .center-part, body .client-orders-container .order-container .order-info, body .user-container form .user-data .left, body .user-container form .user-data .right {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap; }
 
-body .header, body .header .header-link-container, body .header .header-link-container #logoutForm, body .header .header-link-container .header-link, body .product-container .product-top-section, body .cart-container .cart-info .cart-details, body .cart-container .cart-info .cart-details .left-and-center, body .client-orders-container .order-container .order-details, body .manager-orders-container .order-container .order-info .order-details, body .manager-orders-container .order-container .order-info .order-details .left-and-center {
+body .header, body .header .header-link-container, body .header .header-link-container #logoutForm, body .header .header-link-container .header-link, body .product-container .product-top-section, body .cart-container .cart-info .cart-details, body .cart-container .cart-info .cart-details .left-and-center, body .client-orders-container .order-container .order-details, body .manager-orders-container .order-container .order-info .order-details, body .manager-orders-container .order-container .order-info .order-details .left-and-center, body .news-container .news-post-container, body .user-container .user-info, body .user-container form .user-data {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center; }
 
-body, body .catalog-container .product-container .product-right, body .product-container .product-bot-section .product-description-container, body .product-container .product-bot-section .product-comments .add-comment-form div, body .cart-container .cart-info .cart-details .right-part, body .manager-orders-container .order-container .status-buttons, body .login-container, body .login-container .login-form .form-group, body .registration-container form div {
+body, body .catalog-container .product-container .product-right, body .product-container .product-bot-section .product-description-container, body .product-container .product-bot-section .product-comments .add-comment-form div, body .cart-container .cart-info .cart-details .right-part, body .manager-orders-container .order-container .status-buttons, body .login-container, body .login-container .login-form .form-group, body .registration-container form div, body .post-container .img-container, body .user-container, body .user-container form {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center; }
 
-body .catalog-container .toggle-categories-btn, body .catalog-container .categories .category-link, body .catalog-container .product-container .product-right .buttons .btn-link, body .product-container .product-top-section .product-buy .add-to-catr-link, body .product-container .product-bot-section .product-comments .add-comment-form div .btn, body .cart-container .cart-info .place-an-order-link, body .cart-container .cart-info .cart-details .right-part .add-to-cart-link, body .cart-container .cart-info .cart-details .right-part .remove-from-cart-link, body .manager-orders-container .order-container .status-buttons .status-change-button, body .login-container .login-form .form-group .login-button, body .registration-container form div .registration-button {
+body .catalog-container .add-product .add-product-link, body .catalog-container .toggle-categories-btn, body .catalog-container .categories .category-link, body .catalog-container .product-container .product-right .buttons .btn-link, body .product-container .product-top-section .product-buy .add-to-catr-link, body .product-container .product-bot-section .product-comments .add-comment-form div .btn, body .cart-container .cart-info .place-an-order-link, body .cart-container .cart-info .profile-link, body .cart-container .cart-info .cart-details .right-part .add-to-cart-link, body .cart-container .cart-info .cart-details .right-part .remove-from-cart-link, body .manager-orders-container .order-container .status-buttons .status-change-button, body .login-container .login-form .form-group .login-button, body .registration-container form div .registration-button, body .user-container .update-link, body .user-container form .profile-submit, body .add-product-container .add-product-form .submit-button {
   display: block;
   color: #000000;
   background-color: #efefef;
@@ -37,22 +37,27 @@ body .catalog-container .toggle-categories-btn, body .catalog-container .categor
   line-height: 30px;
   width: 200px; }
 
-body .catalog-container .toggle-categories-btn:hover, body .catalog-container .categories .category-link:hover, body .catalog-container .product-container .product-right .buttons .btn-link:hover, body .product-container .product-top-section .product-buy .add-to-catr-link:hover, body .product-container .product-bot-section .product-comments .add-comment-form div .btn:hover, body .cart-container .cart-info .place-an-order-link:hover, body .cart-container .cart-info .cart-details .right-part .add-to-cart-link:hover, body .cart-container .cart-info .cart-details .right-part .remove-from-cart-link:hover, body .manager-orders-container .order-container .status-buttons .status-change-button:hover, body .login-container .login-form .form-group .login-button:hover, body .registration-container form div .registration-button:hover {
+body .catalog-container .add-product .add-product-link:hover, body .catalog-container .toggle-categories-btn:hover, body .catalog-container .categories .category-link:hover, body .catalog-container .product-container .product-right .buttons .btn-link:hover, body .product-container .product-top-section .product-buy .add-to-catr-link:hover, body .product-container .product-bot-section .product-comments .add-comment-form div .btn:hover, body .cart-container .cart-info .place-an-order-link:hover, body .cart-container .cart-info .profile-link:hover, body .cart-container .cart-info .cart-details .right-part .add-to-cart-link:hover, body .cart-container .cart-info .cart-details .right-part .remove-from-cart-link:hover, body .manager-orders-container .order-container .status-buttons .status-change-button:hover, body .login-container .login-form .form-group .login-button:hover, body .registration-container form div .registration-button:hover, body .user-container .update-link:hover, body .user-container form .profile-submit:hover, body .add-product-container .add-product-form .submit-button:hover {
   cursor: pointer;
   text-decoration: none;
   border: 1px solid #ff9900; }
-  body .catalog-container .toggle-categories-btn:hover p, body .catalog-container .categories .category-link:hover p, body .catalog-container .product-container .product-right .buttons .btn-link:hover p, body .product-container .product-top-section .product-buy .add-to-catr-link:hover p, body .product-container .product-bot-section .product-comments .add-comment-form div .btn:hover p, body .cart-container .cart-info .place-an-order-link:hover p, body .cart-container .cart-info .cart-details .right-part .add-to-cart-link:hover p, body .cart-container .cart-info .cart-details .right-part .remove-from-cart-link:hover p, body .manager-orders-container .order-container .status-buttons .status-change-button:hover p, body .login-container .login-form .form-group .login-button:hover p, body .registration-container form div .registration-button:hover p,
+  body .catalog-container .add-product .add-product-link:hover p, body .catalog-container .toggle-categories-btn:hover p, body .catalog-container .categories .category-link:hover p, body .catalog-container .product-container .product-right .buttons .btn-link:hover p, body .product-container .product-top-section .product-buy .add-to-catr-link:hover p, body .product-container .product-bot-section .product-comments .add-comment-form div .btn:hover p, body .cart-container .cart-info .place-an-order-link:hover p, body .cart-container .cart-info .profile-link:hover p, body .cart-container .cart-info .cart-details .right-part .add-to-cart-link:hover p, body .cart-container .cart-info .cart-details .right-part .remove-from-cart-link:hover p, body .manager-orders-container .order-container .status-buttons .status-change-button:hover p, body .login-container .login-form .form-group .login-button:hover p, body .registration-container form div .registration-button:hover p, body .user-container .update-link:hover p, body .user-container form .profile-submit:hover p, body .add-product-container .add-product-form .submit-button:hover p,
+  body .catalog-container .add-product .add-product-link:hover div,
   body .catalog-container .toggle-categories-btn:hover div,
   body .catalog-container .categories .category-link:hover div,
   body .catalog-container .product-container .product-right .buttons .btn-link:hover div,
   body .product-container .product-top-section .product-buy .add-to-catr-link:hover div,
   body .product-container .product-bot-section .product-comments .add-comment-form div .btn:hover div,
   body .cart-container .cart-info .place-an-order-link:hover div,
+  body .cart-container .cart-info .profile-link:hover div,
   body .cart-container .cart-info .cart-details .right-part .add-to-cart-link:hover div,
   body .cart-container .cart-info .cart-details .right-part .remove-from-cart-link:hover div,
   body .manager-orders-container .order-container .status-buttons .status-change-button:hover div,
   body .login-container .login-form .form-group .login-button:hover div,
-  body .registration-container form div .registration-button:hover div {
+  body .registration-container form div .registration-button:hover div,
+  body .user-container .update-link:hover div,
+  body .user-container form .profile-submit:hover div,
+  body .add-product-container .add-product-form .submit-button:hover div {
     font-weight: bold; }
 
 * {
@@ -97,6 +102,8 @@ body {
         body .header .header-link-container #logoutForm div a:hover {
           color: #ffffff;
           text-decoration: none; }
+        body .header .header-link-container #logoutForm div .profile-link {
+          margin: 0; }
       body .header .header-link-container .header-link {
         color: #999999;
         text-decoration: none; }
@@ -109,6 +116,8 @@ body {
         text-decoration: none; }
   body .catalog-container {
     margin: 10px 20px; }
+    body .catalog-container .add-product .add-product-link {
+      margin: 0 auto 10px auto; }
     body .catalog-container .toggle-categories-btn {
       margin: 0 auto 10px auto; }
     body .catalog-container .categories {
@@ -123,13 +132,20 @@ body {
       justify-content: space-between;
       border: 1px solid #999999;
       border-radius: 6px;
-      margin: 10px 0; }
+      margin: 10px 0;
+      height: 250px; }
       body .catalog-container .product-container .product-left .product-image-container {
         max-width: 200px;
         margin: 10px; }
-        body .catalog-container .product-container .product-left .product-image-container .product-image {
-          flex: 0 0 auto;
-          width: 100%; }
+        body .catalog-container .product-container .product-left .product-image-container .carousel-container div:first-of-type {
+          height: 230px; }
+          body .catalog-container .product-container .product-left .product-image-container .carousel-container div:first-of-type .carousel-inner .active {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-content: center;
+            justify-content: center;
+            align-items: center; }
       body .catalog-container .product-container .product-left .name-id-description {
         margin: 10px; }
         body .catalog-container .product-container .product-left .name-id-description .product-name {
@@ -149,9 +165,15 @@ body {
     body .product-container .product-top-section .product-image-container {
       max-width: 400px;
       margin: 10px; }
-      body .product-container .product-top-section .product-image-container .product-image {
-        flex: 0 0 auto;
-        width: 100%; }
+      body .product-container .product-top-section .product-image-container .carousel-container div:first-of-type {
+        height: 400px; }
+        body .product-container .product-top-section .product-image-container .carousel-container div:first-of-type .carousel-inner .active {
+          display: flex;
+          flex-direction: column;
+          flex-wrap: nowrap;
+          align-content: center;
+          justify-content: center;
+          align-items: center; }
     body .product-container .product-top-section .product-buy {
       justify-content: space-between; }
       body .product-container .product-top-section .product-buy .product-name {
@@ -210,6 +232,8 @@ body {
     margin: 10px 20px; }
     body .cart-container .cart-info .cart-title {
       margin: 10px; }
+    body .cart-container .cart-info .please-fill {
+      margin: 10px; }
     body .cart-container .cart-info .cart-details {
       border: 1px solid #999999;
       border-radius: 6px;
@@ -218,9 +242,15 @@ body {
       body .cart-container .cart-info .cart-details .product-image {
         margin: 10px;
         max-width: 120px; }
-        body .cart-container .cart-info .cart-details .product-image img {
-          flex: 0 0 auto;
-          width: 100%; }
+        body .cart-container .cart-info .cart-details .product-image .carousel-container div:first-of-type {
+          height: 120px; }
+          body .cart-container .cart-info .cart-details .product-image .carousel-container div:first-of-type .carousel-inner .active {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-content: center;
+            justify-content: center;
+            align-items: center; }
       body .cart-container .cart-info .cart-details .left-and-center .left-part {
         margin: 10px; }
         body .cart-container .cart-info .cart-details .left-and-center .left-part p {
@@ -233,8 +263,12 @@ body {
           white-space: nowrap; }
       body .cart-container .cart-info .cart-details .right-part {
         margin: 10px; }
+        body .cart-container .cart-info .cart-details .right-part .add-to-cart-link {
+          width: 36px; }
         body .cart-container .cart-info .cart-details .right-part .add-to-cart-link:hover {
           border: 1px solid #22bd65; }
+        body .cart-container .cart-info .cart-details .right-part .remove-from-cart-link {
+          width: 36px; }
         body .cart-container .cart-info .cart-details .right-part .remove-from-cart-link:hover {
           border: 1px solid #bb0a21; }
   body .client-orders-container {
@@ -382,3 +416,95 @@ body {
     width: 100%;
     height: 100%;
     flex: 0 0 auto; }
+  body .news-container .news-post-container {
+    margin: 10px 20px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #999999;
+    max-width: 960px;
+    justify-content: space-between; }
+    body .news-container .news-post-container .post-link {
+      color: #000000;
+      text-decoration: none; }
+    body .news-container .news-post-container .post-link:hover {
+      color: #ff9900;
+      text-decoration: none;
+      cursor: pointer; }
+  body .post-container {
+    margin: 10px 20px; }
+    body .post-container .img-container img {
+      flex: 0 0 auto;
+      border-radius: 6px; }
+    body .post-container .post-title {
+      margin: 10px 0;
+      text-align: center;
+      font-size: 30px; }
+    body .post-container .post-text {
+      margin: 10px 0; }
+    body .post-container .post-date {
+      margin: 10px 0;
+      font-size: 14px;
+      text-align: right; }
+  body .home-container {
+    margin: 10px 20px; }
+    body .home-container .title {
+      margin: 10px 0;
+      text-align: center; }
+    body .home-container .text {
+      margin: 10px 0;
+      text-align: center; }
+  body .user-container {
+    margin: 10px 20px; }
+    body .user-container .user-info .left p {
+      min-height: 30px;
+      margin: 10px; }
+    body .user-container .user-info .right p {
+      min-height: 30px;
+      margin: 10px; }
+      body .user-container .user-info .right p input {
+        display: block;
+        margin: 10px auto;
+        border-radius: 6px;
+        border: 1px solid #000000;
+        font-size: 16px;
+        width: 250px;
+        padding: 5px 10px; }
+  body .user-container form {
+    height: 100%;
+    width: 100%; }
+    body .user-container form .user-data .left p {
+      margin: 10px;
+      line-height: 30px; }
+    body .user-container form .user-data .right input {
+      display: block;
+      margin: 10px auto;
+      border-radius: 6px;
+      border: 1px solid #000000;
+      font-size: 16px;
+      width: 250px;
+      padding: 5px 10px; }
+  body .add-product-container {
+    margin: 10px 20px; }
+    body .add-product-container .add-product-form {
+      margin: 10px 0; }
+      body .add-product-container .add-product-form p {
+        text-align: center; }
+      body .add-product-container .add-product-form textarea {
+        display: block;
+        margin: 10px auto;
+        border-radius: 6px;
+        border: 1px solid #000000;
+        font-size: 16px;
+        width: 400px;
+        height: 150px;
+        padding: 5px 10px; }
+      body .add-product-container .add-product-form input {
+        display: block;
+        margin: 10px auto;
+        border-radius: 6px;
+        border: 1px solid #000000;
+        font-size: 16px;
+        width: 400px;
+        padding: 5px 10px; }
+      body .add-product-container .add-product-form .submit-button {
+        margin: 10px auto; }

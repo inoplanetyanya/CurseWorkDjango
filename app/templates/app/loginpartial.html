@@ -2,7 +2,7 @@
 <form id="logoutForm" action="/logout" method="post" class="navbar-right">
   {% csrf_token %}
 
-  <div class="username" class="navbar-brand">Вы вошли как {{ user.username }}</div>
+  <div class="username" class="navbar-brand">Вы вошли как <a class="profile-link" href="{% url 'profile' %}">{{ user.username }}</a></div>
   <div><a class="login-button login-link" href="javascript:document.getElementById('logoutForm').submit()">Выход</a></div>
 </form>
 

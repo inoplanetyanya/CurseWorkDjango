@@ -10,6 +10,30 @@ from datetime import datetime
 from django.contrib import admin
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+from django.db.models.fields import CharField
+
+class ProductInfo(models.Model):
+  album_name = models.CharField(max_length=150)
+  img_collection = models.FileField(verbose_name='asdf')
+  product_id = models.IntegerField()
+  product_name = models.CharField(max_length=150)
+  description_short = models.TextField(max_length=1000)
+  description_full = models.TextField(max_length=999999)
+  category = models.CharField(max_length=150)
+  price = models.DecimalField(decimal_places = 2, max_digits=12)
+
+class Client(models.Model):
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  username = models.CharField(max_length=150, unique=True)
+  first_name = models.CharField(max_length=150)
+  last_name = models.CharField(max_length=150)
+  email = models.EmailField(max_length=150)
+  phone = models.CharField(max_length=150, unique=True)
+
+  class Meta:
+    db_table = "Clients"
+    verbose_name = "Клиент"
+    verbose_name_plural = "Клиенты"
 
 class Сategories(models.Model):
   name = models.CharField(max_length = 150, default = 'Прочее', unique = True, verbose_name = 'Название категории')
@@ -45,12 +69,28 @@ class Images(models.Model):
     verbose_name = "Картинка"
     verbose_name_plural = "Картинки"
 
+class News(models.Model):
+  title = models.CharField(max_length=150, verbose_name='Заголовок новости')
+  text = models.TextField(verbose_name='Текст новости')
+  image = models.FileField(default = 'placeholder/placeholder.png', verbose_name = 'Изображение к новости')
+  date = models.DateField(default=datetime.now(), verbose_name='Дата публикации')
+
+  def __str__(self) -> str:
+    return self.title
+
+  class Meta:
+    db_table = "News"
+    ordering = ["-date"]
+    verbose_name = "Новость"
+    verbose_name_plural = "Новости"
+
 class Product(models.Model):
   product_id = models.CharField(max_length = 150, unique = True, verbose_name = 'Код продукта')
   name = models.CharField(max_length = 150, verbose_name = 'Название продукта')
   price = models.DecimalField(max_digits=10, decimal_places = 2, verbose_name = 'Цена продукта', default = 9999999)
   album = models.ForeignKey(Album, on_delete = models.CASCADE, verbose_name = 'Альбом')
-  description = models.TextField(verbose_name = 'Описание')
+  description_short = models.CharField(max_length=1000, verbose_name='Краткое описание')
+  description_full = models.TextField(verbose_name = 'Полное описание')
   category = models.ForeignKey(Сategories, on_delete = models.CASCADE, verbose_name = 'Категория')
 
   def get_absolute_url(self):
@@ -64,8 +104,6 @@ class Product(models.Model):
     ordering = ["product_id"]
     verbose_name = "Продукт"
     verbose_name_plural = "Продукты"
-
-
 
 class Comment(models.Model):
   text = models.TextField(verbose_name = 'Отзыв')
@@ -126,20 +164,6 @@ class Cart(models.Model):
     verbose_name = "Корзина"
     verbose_name_plural = "Корзины"
 
-
-
-# class Albums(models.Model):
-#   product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name="Продукт")
-#   img = models.ForeignKey(Images, on_delete=models.CASCADE, verbose_name='Картинка')
-
-#   def __str__(self):
-#     return self.product.product_id + " | - " + self.img.img
-
-#   class Meta:
-#     db_table = "Albums"
-#     verbose_name = "Альбом"
-#     verbose_name_plural = "Альбомы"
-
 admin.site.register(Product)
 admin.site.register(Сategories)
 admin.site.register(Comment)
@@ -148,3 +172,4 @@ admin.site.register(Cart)
 admin.site.register(Status)
 admin.site.register(Images)
 admin.site.register(Album)
+admin.site.register(News)

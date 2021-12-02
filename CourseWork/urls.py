@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^catalog/category/(?P<parametr>\d+)/$', app.views.catergory, name='catergory'),
     url(r'^contact$', app.views.contact, name='contact'),
     url(r'^news$', app.views.news, name='news'),
+    url(r'^news/(?P<parametr>\d+)/$', app.views.news_post, name='post'),
     url(r'^about$', app.views.about, name='about'),
     url(r'^client-cart$', app.views.clientCart, name='client-cart'),
     url(r'^addToCart(?P<parametr>\d+)/$', app.views.addToCart, name='addToCart'),
@@ -41,6 +42,12 @@ urlpatterns = [
     url(r'^deleteOrder(?P<parametr>\d+)/$', app.views.deleteOrder, name='deleteOrder'),
     url(r'^resetOrder(?P<parametr>\d+)/$', app.views.resetOrder, name='resetOrder'),
     url(r'^manager-orders$', app.views.managerOrders, name='manager-orders'),
+    url(r'^edit-profile$', app.views.editUser, name='edit-profile'),
+    url(r'^profile$', app.views.profile, name='profile'),
+    url(r'^add-product$', app.views.addProduct, name='add-product'),
+    # url(r'^update-user$', app.views.updateUser, name='update-user'),
+
+
 
     url(r'^imgs$', app.views.imgs, name='imgs'),
 

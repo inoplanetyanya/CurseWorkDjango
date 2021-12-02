@@ -1,0 +1,17 @@
+{% extends "app/layout.html" %} {% block content %}
+<div class="user-container">
+  <form class="edit-profile-form" method="POST">
+    {% csrf_token %}
+    <div class="user-data">
+      <div class="left">
+        <p>Имя</p>
+        <p>Фамилия</p>
+        <p>Телефон</p>
+        <p>E-mail</p>
+      </div>
+      <div class="right">{{userForm.first_name}} {{userForm.last_name}} {{userForm.phone}} {{userForm.email}}</div>
+    </div>
+    <button type="submit" class="profile-submit">Обновить данные</button>
+  </form>
+</div>
+{% endblock %}

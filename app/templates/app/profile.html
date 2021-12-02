@@ -1,0 +1,29 @@
+{% extends "app/layout.html" %} {% block content %}
+<div class="user-container">
+  <div class="user-info">
+    <div class="left">
+      <p>Имя пользователя</p>
+      <p>Имя</p>
+      <p>Фамилия</p>
+      <p>Телефон</p>
+      <p>E-mail</p>
+      <p>Статус учетной записи</p>
+      <p>Дата регистрации</p>
+    </div>
+    <div class="right">
+      <p>{{client.username}}</p>
+      <p>{{client.first_name}}</p>
+      <p>{{client.last_name}}</p>
+      <p>{{client.phone}}</p>
+      <p>{{client.email}}</p>
+      {% if user.is_active %}
+      <p>Активна</p>
+      {% else %}
+      <p>Неактивная</p>
+      {% endif %}
+      <p>{{user.date_joined}}</p>
+    </div>
+  </div>
+  <a href="{% url 'edit-profile' %}" class="update-link"><div class="update-btn">Обновить данные</div></a>
+</div>
+{% endblock %}

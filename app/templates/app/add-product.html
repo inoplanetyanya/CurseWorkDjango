@@ -1,0 +1,26 @@
+{% extends "app/layout.html" %} {% block content %}
+<div class="add-product-container">
+  {% if user.is_superuser %}
+  <form enctype="multipart/form-data" class="add-product-form" method="POST">
+    {% csrf_token %}
+    <p>Наименование</p>
+    {{addProductForm.product_name}}
+    <p>Код продукта</p>
+    {{addProductForm.product_id}}
+    <p>Цена</p>
+    {{addProductForm.price}}
+    <p>Краткое описание</p>
+    {{addProductForm.description_short}}
+    <p>Полное описание</p>
+    {{addProductForm.description_full}}
+    <p>Категория</p>
+    {{addProductForm.category}}
+    <p>Альбом</p>
+    {{addProductForm.album_name}}
+    <p>Картинки</p>
+    {{addProductForm.img_collection}}
+    <button class="submit-button" type="submit">Добавить продукт</button>
+  </form>
+  {% endif %}
+</div>
+{% endblock %}
