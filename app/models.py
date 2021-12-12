@@ -35,7 +35,7 @@ class Client(models.Model):
     verbose_name = "Клиент"
     verbose_name_plural = "Клиенты"
 
-class Сategories(models.Model):
+class Categories(models.Model):
   name = models.CharField(max_length = 150, default = 'Прочее', unique = True, verbose_name = 'Название категории')
 
   def __str__(self):
