@@ -97,6 +97,9 @@ def catalog(request):
     p.description_full as productDescriptionFull,
     p.price as productPrice
     from Products as p
+    join Categories as c
+    on p.category_id = c.id
+    order by c.name, productPrice
     '''
 
     products_tmp = Product.objects.raw(q)
@@ -146,7 +149,7 @@ def catergory(request, parametr):
     from Products as p
     join Categories as c
     on c.id = p.category_id
-    ''' + 'where c.id = ' + str(parametr)
+    ''' + 'where c.id = ' + str(parametr) + ' order by productPrice'
 
     products_tmp = Product.objects.raw(q)
 
