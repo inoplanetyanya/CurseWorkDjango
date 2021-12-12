@@ -127,7 +127,7 @@ def catalog(request):
         request,
         'app/catalog.html',
         {
-            'title': 'Продукты',
+            'title': 'Каталог',
             'categories': categories,
             'products': products,
             'year':datetime.now().year,
@@ -135,12 +135,43 @@ def catalog(request):
         )
 
 def catergory(request, parametr):
-    query = '''select * from Products as p 
-    join Сategories as c on p.category_id = c.id
-    where c.id = 
-    ''' + str(parametr)
+    q = '''
+    select
+    p.id,
+    p.name as productName,
+    p.product_id as productCode,
+    p.description_short as productDescriptionShort,
+    p.description_full as productDescriptionFull,
+    p.price as productPrice
+    from Products as p
+    join Сategories as c
+    on c.id = p.category_id
+    ''' + 'where c.id = ' + str(parametr)
 
-    products = Product.objects.raw(query)
+    products_tmp = Product.objects.raw(q)
+
+    class Product_tmp:
+        def __init__(self, product, images):
+            self.productID = product.id
+            self.productCode = product.productCode
+            self.productName = product.productName
+            self.productDescriptionShort = product.productDescriptionShort
+            self.productDescriptionFull = product.productDescriptionFull
+            self.productPrice = product.productPrice
+            self.productImages = []
+            for img in images:
+                self.productImages.append(str(img.img.url))
+            self.productImage = self.productImages[0]
+
+    products = []
+
+    for product in products_tmp:
+        images = Images.objects.filter(album_id = product.album_id)
+        products.append(Product_tmp(product, images))
+
+    categories = Сategories.objects.all()
+
+    # products = Product.objects.raw(query)
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -148,6 +179,7 @@ def catergory(request, parametr):
         {
             'title': 'Каталог',
             'products': products,
+            'categories': categories,
             'year':datetime.now().year,
             }
         )

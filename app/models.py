@@ -39,7 +39,7 @@ class Сategories(models.Model):
   name = models.CharField(max_length = 150, default = 'Прочее', unique = True, verbose_name = 'Название категории')
 
   def __str__(self):
-    return str(self.id) + " | " + self.name
+    return self.name
 
   class Meta:
     db_table = "Сategories"
@@ -125,7 +125,7 @@ class Status(models.Model):
   colorHEX = models.CharField(max_length = 6, verbose_name = 'Цвет статуса HEX')
 
   def __str__(self):
-    return '%s | %s' % (self.id, self.text)
+    return self.text
 
   class Meta:
     db_table = "Statuses"
@@ -164,12 +164,12 @@ class Cart(models.Model):
     verbose_name = "Корзина"
     verbose_name_plural = "Корзины"
 
-admin.site.register(Product)
-admin.site.register(Сategories)
-admin.site.register(Comment)
-admin.site.register(Order)
-admin.site.register(Cart)
-admin.site.register(Status)
-admin.site.register(Images)
-admin.site.register(Album)
-admin.site.register(News)
+# admin.site.register(Product)
+# admin.site.register(Сategories)
+# admin.site.register(Comment)
+# admin.site.register(Order)
+# admin.site.register(Cart)
+# admin.site.register(Status)
+# admin.site.register(Images)
+# admin.site.register(Album)
+# admin.site.register(News)

@@ -1,15 +1,16 @@
 {% extends "app/layout.html" %} {% block content %}
 <div class="contacts-container">
-  <address>
-    <p class="address address-city">Псковская область, Псков</p>
-    <p class="address address-street">Улица Пушкина, дом Колотушкина</p>
-    <abbr class="address address-phone" title="Телефон">Телефон: +7 911 180 82 62</abbr>
-  </address>
+  <div class="address-container">
+    <address>
+      <p class="address address-city">Псковская область, Псков</p>
+      <p class="address address-street">Улица Пушкина, дом Колотушкина</p>
+      <abbr class="address address-phone" title="Телефон">Телефон: +7 911 180 82 62</abbr>
+    </address>
 
-  <address>
-    <p class="email support-title">Поддержка: <a class="email-link" href="mailto:Support@example.com">Support@inomarket.com</a></p>
-    <p class="email marketing-title">Отдел маркетинга: <a class="email-link" href="mailto:Marketing@example.com">Marketing@inomarket.com</a></p>
-  </address>
+    <address>
+      <p class="email support-title">Поддержка: <a class="email-link" href="mailto:Support@example.com">Support@inomarket.com</a></p>
+      <p class="email marketing-title">Отдел маркетинга: <a class="email-link" href="mailto:Marketing@example.com">Marketing@inomarket.com</a></p>
+    </address>
+  </div>
 </div>
-
 {% endblock %}
