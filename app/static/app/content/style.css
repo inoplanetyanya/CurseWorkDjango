@@ -214,7 +214,8 @@ body {
       text-align: center;
       margin: 10px; }
     body .product-container .product-bot-section .product-comments .auth-ask {
-      text-align: center; }
+      text-align: center;
+      margin: 10px 0; }
     body .product-container .product-bot-section .product-comments .add-comment-title {
       text-align: center;
       margin: 10px; }
@@ -259,9 +260,11 @@ body {
       background-color: #ffffff;
       margin: 10px auto; }
     body .cart-container .cart-info .please-fill {
-      margin: 10px; }
+      margin: 10px;
+      text-align: center; }
     body .cart-container .cart-info .profile-link {
-      background-color: #ffffff; }
+      background-color: #ffffff;
+      margin: 10px auto; }
     body .cart-container .cart-info .cart-details {
       background-color: #ffffff;
       border-radius: 6px;

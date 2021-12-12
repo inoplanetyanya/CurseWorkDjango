@@ -389,6 +389,7 @@ body {
 
         .auth-ask {
           text-align: center;
+          margin: 10px 0;
         }
 
         .add-comment-title {
@@ -475,10 +476,12 @@ body {
 
       .please-fill {
         margin: 10px;
+        text-align: center;
       }
       .profile-link {
         @extend %Button;
         background-color: $CardColor;
+        margin: 10px auto;
       }
 
       .cart-details {
