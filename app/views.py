@@ -18,7 +18,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 from app.forms import AddAlbumForm, AddImagesForm, AddProductForm, CommentForm, EditUserForm
 
-from .models import Album, Cart, Client, Comment, Images, News, Order, Product, Status, Сategories
+from .models import Album, Cart, Client, Comment, Images, News, Order, Product, Status, Categories
 
 import random
 
@@ -120,7 +120,7 @@ def catalog(request):
         images = Images.objects.filter(album_id = product.album_id)
         products.append(Product_tmp(product, images))
 
-    categories = Сategories.objects.all()
+    categories = Categories.objects.all()
 
     assert isinstance(request, HttpRequest)
     return render(
@@ -144,7 +144,7 @@ def catergory(request, parametr):
     p.description_full as productDescriptionFull,
     p.price as productPrice
     from Products as p
-    join Сategories as c
+    join Categories as c
     on c.id = p.category_id
     ''' + 'where c.id = ' + str(parametr)
 
@@ -169,7 +169,7 @@ def catergory(request, parametr):
         images = Images.objects.filter(album_id = product.album_id)
         products.append(Product_tmp(product, images))
 
-    categories = Сategories.objects.all()
+    categories = Categories.objects.all()
 
     # products = Product.objects.raw(query)
     assert isinstance(request, HttpRequest)
@@ -676,9 +676,9 @@ def addProduct(request):
                 Album.objects.create(name = pf.album_name)
             album = Album.objects.get(name = pf.album_name)
 
-            if not Сategories.objects.filter(name = pf.category).exists():
-                Сategories.objects.create(name = pf.category)
-            category = Сategories.objects.get(name = pf.category)
+            if not Categories.objects.filter(name = pf.category).exists():
+                Categories.objects.create(name = pf.category)
+            category = Categories.objects.get(name = pf.category)
 
             Product.objects.create(
                 product_id = pf.product_id,

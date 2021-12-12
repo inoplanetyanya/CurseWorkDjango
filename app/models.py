@@ -165,7 +165,7 @@ class Cart(models.Model):
     verbose_name_plural = "Корзины"
 
 # admin.site.register(Product)
-# admin.site.register(Сategories)
+# admin.site.register(Categories)
 # admin.site.register(Comment)
 # admin.site.register(Order)
 # admin.site.register(Cart)

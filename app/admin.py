@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Client, Сategories, Album, Images, News, Comment, Status, Order, Cart
+from .models import Product, Client, Categories, Album, Images, News, Comment, Status, Order, Cart
 
 class ProductAdmin(admin.ModelAdmin):
   list_display = ['name', 'product_id', 'price', 'album', 'category']
@@ -7,7 +7,7 @@ class ProductAdmin(admin.ModelAdmin):
 class ClientAdmin(admin.ModelAdmin):
   list_display = ['username', 'first_name', 'last_name', 'email', 'phone']
 
-class СategoriesAdmin(admin.ModelAdmin):
+class CategoriesAdmin(admin.ModelAdmin):
   list_display = ['name']
 
 class AlbumAdmin(admin.ModelAdmin):
@@ -33,7 +33,7 @@ class CartAdmin(admin.ModelAdmin):
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Client, ClientAdmin)
-admin.site.register(Сategories, СategoriesAdmin)
+admin.site.register(Categories, CategoriesAdmin)
 admin.site.register(Album, AlbumAdmin)
 admin.site.register(Images, ImagesAdmin)
 admin.site.register(News, NewsAdmin)
