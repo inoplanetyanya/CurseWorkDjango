@@ -42,7 +42,7 @@ class Categories(models.Model):
     return self.name
 
   class Meta:
-    db_table = "Сategories"
+    db_table = "Categories"
     verbose_name = "Категория"
     verbose_name_plural = "Категории"
 
@@ -91,7 +91,7 @@ class Product(models.Model):
   album = models.ForeignKey(Album, on_delete = models.CASCADE, verbose_name = 'Альбом')
   description_short = models.CharField(max_length=1000, verbose_name='Краткое описание')
   description_full = models.TextField(verbose_name = 'Полное описание')
-  category = models.ForeignKey(Сategories, on_delete = models.CASCADE, verbose_name = 'Категория')
+  category = models.ForeignKey(Categories, on_delete = models.CASCADE, verbose_name = 'Категория')
 
   def get_absolute_url(self):
     return reverse("product", args=[str(self.id)])
