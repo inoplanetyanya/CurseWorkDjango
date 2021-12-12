@@ -7,7 +7,7 @@ body .header .header-left, body .header .header-right, body .catalog-container .
   flex-direction: row;
   flex-wrap: nowrap; }
 
-body .catalog-container .product-container .product-left .name-id-description, body .product-container .product-top-section .product-buy, body .product-container .product-bot-section .product-comments, body .cart-container .cart-info .cart-details .left-and-center .left-part, body .cart-container .cart-info .cart-details .left-and-center .center-part, body .client-orders-container .order-container .order-info, body .user-container form .user-data .left, body .user-container form .user-data .right {
+body .catalog-container .product-container .product-left .name-id-description, body .product-container .product-top-section .product-buy, body .product-container .product-bot-section .product-comments, body .cart-container .cart-info .cart-details .left-and-center .left-part, body .cart-container .cart-info .cart-details .left-and-center .center-part, body .client-orders-container .order-container .order-info, body .post-container .npc, body .user-container form .user-data .left, body .user-container form .user-data .right {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap; }

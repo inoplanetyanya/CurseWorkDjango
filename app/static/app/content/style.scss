@@ -970,6 +970,7 @@ body {
     min-height: $MinPageContentHeight;
 
     .npc {
+      @extend %FlexColumn;
       margin: 10px 20px;
       background-color: $CardColor;
       border-radius: 6px;
