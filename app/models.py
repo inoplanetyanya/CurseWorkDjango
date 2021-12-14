@@ -28,7 +28,7 @@ class Client(models.Model):
   first_name = models.CharField(max_length=150)
   last_name = models.CharField(max_length=150)
   email = models.EmailField(max_length=150)
-  phone = models.CharField(max_length=150, unique=True)
+  phone = models.CharField(max_length=150)
 
   class Meta:
     db_table = "Clients"
